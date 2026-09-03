@@ -180,5 +180,47 @@ const GRAVEYARD_REQUESTS = [
     "title": "Strange Pigeon Feeder",
     "status": "available",
     "note": ""
-  }
+  },
+  {
+    "id": "RG-025",
+    "gender": "Male",
+    "title": "Ferris Burke",
+    "status": "available",
+    "note": "NSFW Centred"
+  },
+  {
+    "id": "RG-026",
+    "gender": "Female",
+    "title": "Elowen Blacktide Alt",
+    "status": "available",
+    "note": ""
+  },
+  {
+    "id": "RG-027",
+    "gender": "Male",
+    "title": "Maddy Firth Alt (Disabled User)",
+    "status": "available",
+    "note": ""
+  },
+  {
+    "id": "RG-028",
+    "gender": "Male",
+    "title": "Eloy Brindle Alt",
+    "status": "available",
+    "note": ""
+  },
+  {
+    "id": "RG-029",
+    "gender": "Male",
+    "title": "Chef Step-Brother",
+    "status": "available",
+    "note": ""
+  },
+  {
+    "id": "RG-030",
+    "gender": "Male",
+    "title": "Puppy Play (Dom User)",
+    "status": "available",
+    "note": ""
+  },
 ];
