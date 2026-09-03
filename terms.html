@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mama Anthem commissions — custom bots, character concepts, visual assets, and bundles by his_national_anthem.">
+  <meta name="description" content="Mama Anthem commissions by his_national_anthem.">
   <title>Terms of Service — Mama Anthem</title>
   <style>
 :root {
@@ -732,6 +732,205 @@ textarea { min-height: 150px; resize: vertical; }
   .page-hero { padding-top: 52px; }
   .form-card { padding: 24px; }
 }
+
+
+.pricing-card {
+  min-height: 360px;
+}
+
+.price-big {
+  margin-top: auto;
+  padding-top: 24px;
+  font-family: var(--display);
+  font-size: 2rem;
+  color: var(--wine);
+}
+
+.price-big small {
+  font-family: var(--body);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #6a5a52;
+  margin-left: 6px;
+}
+
+.feature-list {
+  padding: 0;
+  margin: 18px 0 0;
+  list-style: none;
+}
+
+.feature-list li {
+  padding: 9px 0;
+  border-top: 1px dashed rgba(89,62,46,.22);
+  color: #4f433d;
+}
+
+.feature-list li::before {
+  content: "†";
+  color: var(--wine);
+  margin-right: 9px;
+}
+
+.scenario-callout {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(111,36,52,.18), transparent 30%),
+    linear-gradient(145deg, #251b18, #17110f);
+  color: var(--cream);
+  border-radius: 30px;
+  padding: 38px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.scenario-callout::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(248,240,228,.14);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.scenario-callout > * {
+  position: relative;
+  z-index: 1;
+}
+
+.scenario-callout h2,
+.scenario-callout h3 {
+  color: var(--cream);
+}
+
+.scenario-callout p {
+  color: rgba(248,240,228,.75);
+}
+
+.scenario-count {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.scenario-count .count-box {
+  border: 1px solid rgba(248,240,228,.2);
+  background: rgba(248,240,228,.07);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.scenario-count strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 4rem;
+  line-height: .9;
+  margin-bottom: 8px;
+}
+
+.scenario-count span {
+  color: rgba(248,240,228,.7);
+}
+
+.plus {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  opacity: .55;
+}
+
+.breakdown-row {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 28px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.breakdown-row:first-child {
+  border-top: 0;
+}
+
+.breakdown-row h3 {
+  color: var(--wine);
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.breakdown-row p {
+  margin: 0;
+  color: #4f433d;
+}
+
+.breakdown-row strong {
+  color: var(--ink);
+}
+
+.addon-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.addon-table th,
+.addon-table td {
+  text-align: left;
+  padding: 14px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.addon-table th {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--wine);
+}
+
+.addon-table td:last-child,
+.addon-table th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.badge-limited {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(111,36,52,.1);
+  color: var(--wine);
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 12px;
+}
+
+.payment-total-box {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  background: rgba(248,240,228,.48);
+}
+
+.payment-total-box strong {
+  display: block;
+  font-family: var(--display);
+  color: var(--wine);
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+  .scenario-count,
+  .breakdown-row {
+    grid-template-columns: 1fr;
+  }
+  .plus { display: none; }
+}
+
   </style>
 </head>
 <body>
@@ -763,7 +962,7 @@ textarea { min-height: 150px; resize: vertical; }
   <section class="section section-muted">
     <div class="site-shell legal">
       <div class="notice">
-        <strong>Important:</strong> This is a practical commission-policy template, not legal advice. Edit any payment, refund, revision, ownership, or turnaround rule that does not match how you actually work.
+        <strong>Important:</strong> This is a practical commission-policy template, not legal advice. Edit any rule that does not match how you actually run your commissions.
       </div>
 
       <h2>1. General</h2>
@@ -772,22 +971,31 @@ textarea { min-height: 150px; resize: vertical; }
       <h2>2. Age requirement</h2>
       <p>Clients requesting mature or sexual content must be 18 or older. All characters depicted in sexual or explicitly mature content must be adults.</p>
 
-      <h2>3. Payment</h2>
-      <p>Payment terms, currency, platform, and whether payment is due in full or in stages will be confirmed before work begins. No work begins until the agreed first payment has been received.</p>
+      <h2>3. Pricing & quotes</h2>
+      <p>Base commission prices are listed on the commission page. Add-ons or major scope changes may change the final total. The client will always receive the full approved total before payment is requested.</p>
 
-      <h2>4. Scope</h2>
-      <p>The commission includes only the deliverables listed in the agreed scope. Major additions, concept changes, or new deliverables requested after work begins may require an additional fee.</p>
+      <h2>4. Payment</h2>
+      <p>Do not send payment before the commission has been approved. Payment is made only after the scope, total, turnaround, and revision allowance have been confirmed.</p>
 
-      <h2>5. Revisions</h2>
-      <p>Reasonable revisions are allowed only within the revision allowance agreed at the start. Revisions correct or refine the commissioned concept; they do not automatically include complete rewrites or a new concept.</p>
+      <h2>5. Scenario limit</h2>
+      <p>Bots can hold a maximum of 10 scenario slots. For commissioned bots using a fresh scenario set, I write 9 scenarios and intentionally leave the final slot open for the bot user to create their own scenario. Paid scenario add-ons are not available.</p>
 
-      <h2>6. Turnaround</h2>
+      <h2>6. Scope</h2>
+      <p>The commission includes only the deliverables listed in the agreed scope. Major additions, concept changes, or new deliverables requested after work begins may require a new quote.</p>
+
+      <h2>7. Revisions</h2>
+      <p>Reasonable revisions are allowed only within the revision allowance agreed at the start. Revisions refine the commissioned concept; they do not automatically include a complete rewrite or a new concept.</p>
+
+      <h2>8. Turnaround</h2>
       <p>Turnaround estimates are not guarantees unless a specific deadline is explicitly accepted in writing. Delays caused by missing information, late responses, or major scope changes may extend delivery.</p>
 
-      <h2>7. Refunds & cancellations</h2>
+      <h2>9. Rush commissions</h2>
+      <p>Rush work is subject to availability and carries a 30% surcharge because it requires prioritizing the commission ahead of the normal queue.</p>
+
+      <h2>10. Refunds & cancellations</h2>
       <p>Refund eligibility depends on how much work has already been completed. Once substantial work has been delivered, refunds may be partial or unavailable.</p>
 
-      <h2>8. Client responsibilities</h2>
+      <h2>11. Client responsibilities</h2>
       <ul>
         <li>Provide accurate references, preferences, and hard limits.</li>
         <li>Review drafts or questions within a reasonable timeframe.</li>
@@ -795,13 +1003,22 @@ textarea { min-height: 150px; resize: vertical; }
         <li>Keep important approvals, changes, and payment decisions in writing.</li>
       </ul>
 
-      <h2>9. Usage & ownership</h2>
+      <h2>12. Media-inspired commissions</h2>
+      <p>Media-inspired bots involve additional research and are intended to be inspired by source material rather than exact reproductions of another creator's protected work.</p>
+
+      <h2>13. Request Graveyard</h2>
+      <p>Request Graveyard commissions are limited by the number of unused requests available. Predetermined tropes or scenarios are part of the selected request and may limit how much the original concept can be changed without requiring a new quote.</p>
+
+      <h2>14. Bot Remasters</h2>
+      <p>Remasters reuse the same character and focus on rewriting existing scenarios, cleaning up presentation, and adjusting visual material. Current remaster eligibility is limited to bots originally posted from April through June 2026.</p>
+
+      <h2>15. Usage & ownership</h2>
       <p>Unless otherwise agreed, the client may use the final commission for personal use and on the platform it was commissioned for. Resale, redistribution, commercial use, or claiming the work as self-created is not permitted without separate written permission.</p>
 
-      <h2>10. Portfolio use</h2>
+      <h2>16. Portfolio use</h2>
       <p>I may display finished work or excerpts in my portfolio unless the client requests privacy before the commission is completed.</p>
 
-      <h2>11. Platform rules</h2>
+      <h2>17. Platform rules</h2>
       <p>The finished commission must still comply with the rules of the platform where it is posted or used. I am not responsible for later policy changes, moderation decisions, or account restrictions.</p>
 
       <div class="button-row">
@@ -878,8 +1095,7 @@ if (copyButton) {
     ];
 
     try {
-      await navigator.clipboard.writeText(lines.join('
-'));
+      await navigator.clipboard.writeText(lines.join('\n'));
       status.textContent = 'Request copied. Paste it into your preferred contact method.';
     } catch {
       status.textContent = 'Copy failed. Select the form text manually and send it through your preferred contact method.';

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mama Anthem commissions — custom bots, character concepts, visual assets, and bundles by his_national_anthem.">
+  <meta name="description" content="Mama Anthem commissions by his_national_anthem.">
   <title>Payment — Mama Anthem</title>
   <style>
 :root {
@@ -732,6 +732,205 @@ textarea { min-height: 150px; resize: vertical; }
   .page-hero { padding-top: 52px; }
   .form-card { padding: 24px; }
 }
+
+
+.pricing-card {
+  min-height: 360px;
+}
+
+.price-big {
+  margin-top: auto;
+  padding-top: 24px;
+  font-family: var(--display);
+  font-size: 2rem;
+  color: var(--wine);
+}
+
+.price-big small {
+  font-family: var(--body);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #6a5a52;
+  margin-left: 6px;
+}
+
+.feature-list {
+  padding: 0;
+  margin: 18px 0 0;
+  list-style: none;
+}
+
+.feature-list li {
+  padding: 9px 0;
+  border-top: 1px dashed rgba(89,62,46,.22);
+  color: #4f433d;
+}
+
+.feature-list li::before {
+  content: "†";
+  color: var(--wine);
+  margin-right: 9px;
+}
+
+.scenario-callout {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(111,36,52,.18), transparent 30%),
+    linear-gradient(145deg, #251b18, #17110f);
+  color: var(--cream);
+  border-radius: 30px;
+  padding: 38px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.scenario-callout::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(248,240,228,.14);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.scenario-callout > * {
+  position: relative;
+  z-index: 1;
+}
+
+.scenario-callout h2,
+.scenario-callout h3 {
+  color: var(--cream);
+}
+
+.scenario-callout p {
+  color: rgba(248,240,228,.75);
+}
+
+.scenario-count {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.scenario-count .count-box {
+  border: 1px solid rgba(248,240,228,.2);
+  background: rgba(248,240,228,.07);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.scenario-count strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 4rem;
+  line-height: .9;
+  margin-bottom: 8px;
+}
+
+.scenario-count span {
+  color: rgba(248,240,228,.7);
+}
+
+.plus {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  opacity: .55;
+}
+
+.breakdown-row {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 28px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.breakdown-row:first-child {
+  border-top: 0;
+}
+
+.breakdown-row h3 {
+  color: var(--wine);
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.breakdown-row p {
+  margin: 0;
+  color: #4f433d;
+}
+
+.breakdown-row strong {
+  color: var(--ink);
+}
+
+.addon-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.addon-table th,
+.addon-table td {
+  text-align: left;
+  padding: 14px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.addon-table th {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--wine);
+}
+
+.addon-table td:last-child,
+.addon-table th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.badge-limited {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(111,36,52,.1);
+  color: var(--wine);
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 12px;
+}
+
+.payment-total-box {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  background: rgba(248,240,228,.48);
+}
+
+.payment-total-box strong {
+  display: block;
+  font-family: var(--display);
+  color: var(--wine);
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+  .scenario-count,
+  .breakdown-row {
+    grid-template-columns: 1fr;
+  }
+  .plus { display: none; }
+}
+
   </style>
 </head>
 <body>
@@ -758,7 +957,7 @@ textarea { min-height: 150px; resize: vertical; }
       <h1>payment.</h1>
       <p class="hero-copy">
         Your commission should already be approved and quoted before you pay.
-        Choose whichever checkout method is easiest for you.
+        The base prices are public; the final amount depends on any approved add-ons or rush fee.
       </p>
     </div>
   </section>
@@ -767,7 +966,7 @@ textarea { min-height: 150px; resize: vertical; }
     <div class="site-shell">
       <div class="notice">
         <strong>Do not pay before approval.</strong>
-        If you have not received a confirmed commission total from me yet, return to the commission request page first.
+        If you have not received a confirmed total from me yet, return to the request form first.
       </div>
 
       <div class="section-head" style="margin-top:48px;">
@@ -775,18 +974,18 @@ textarea { min-height: 150px; resize: vertical; }
           <span class="eyebrow">Choose checkout</span>
           <h2>Secure payment options</h2>
         </div>
-        <p>The payment processor handles your card or account details. This website does not store payment-card information.</p>
+        <p>The payment processor handles card/account details. This GitHub Pages site does not store payment-card information.</p>
       </div>
 
       <div class="grid grid-2">
         <article class="card service-card">
           <span class="card-kicker">01 / Card checkout</span>
           <h3>Stripe</h3>
-          <p>Use Stripe for secure card checkout once your commission total has been approved.</p>
+          <p>Use Stripe after your final commission total has been approved.</p>
           <ul class="list-clean">
             <li>Secure hosted checkout</li>
             <li>No card details stored on this site</li>
-            <li>Use only the amount you were quoted</li>
+            <li>Pay only the amount you were quoted</li>
           </ul>
           <div class="button-row" style="margin-top:auto;padding-top:26px;">
             <a class="btn btn-primary" href="#" data-payment-provider="stripe">Pay with Stripe</a>
@@ -796,11 +995,11 @@ textarea { min-height: 150px; resize: vertical; }
         <article class="card service-card">
           <span class="card-kicker">02 / PayPal</span>
           <h3>PayPal</h3>
-          <p>Use PayPal if that is your preferred checkout method after your commission has been approved.</p>
+          <p>Use PayPal if that is your preferred checkout method after approval.</p>
           <ul class="list-clean">
             <li>Hosted by PayPal</li>
-            <li>Do not use Friends & Family for commission payments</li>
-            <li>Use only the amount you were quoted</li>
+            <li>Commission payments must use a proper commercial payment method</li>
+            <li>Pay only the amount you were quoted</li>
           </ul>
           <div class="button-row" style="margin-top:auto;padding-top:26px;">
             <a class="btn btn-dark" href="#" data-payment-provider="paypal">Pay with PayPal</a>
@@ -809,26 +1008,28 @@ textarea { min-height: 150px; resize: vertical; }
       </div>
 
       <div class="notice" id="payment-not-connected" data-payment-status style="margin-top:24px;">
-        Stripe and PayPal links have not been connected yet. The buttons above are safe placeholders and cannot charge anyone.
+        Stripe and PayPal links have not been connected yet. These buttons cannot charge anyone until the hosted checkout URLs are added.
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="site-shell">
-      <div class="grid grid-3 steps">
-        <article class="card step">
-          <h3>Request</h3>
-          <p>Submit the commission brief so I can confirm whether I can take the project.</p>
-        </article>
-        <article class="card step">
-          <h3>Approve & quote</h3>
-          <p>I confirm the final scope, price, turnaround, and revision allowance before payment.</p>
-        </article>
-        <article class="card step">
-          <h3>Pay securely</h3>
-          <p>Use Stripe or PayPal only after receiving the approved total.</p>
-        </article>
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Base prices</span>
+          <h2>Check your quote.</h2>
+        </div>
+        <p>Your approved total should start from one of these base prices and then include only the add-ons you agreed to.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="payment-total-box"><strong>$20 CAD</strong>Build a New Bot</div>
+        <div class="payment-total-box"><strong>$14 CAD</strong>Create an Alt</div>
+        <div class="payment-total-box"><strong>$25 CAD</strong>Media-Inspired Bot</div>
+        <div class="payment-total-box"><strong>$12 CAD</strong>Resurrect a Request</div>
+        <div class="payment-total-box"><strong>$15 CAD</strong>Bot Remaster</div>
+        <div class="payment-total-box"><strong>+ add-ons</strong>Only if they were approved in your final quote.</div>
       </div>
     </div>
   </section>
@@ -842,7 +1043,7 @@ textarea { min-height: 150px; resize: vertical; }
         </div>
         <div>
           <p class="quote">“Payment confirms the commission scope you already approved.”</p>
-          <p>By paying, you confirm that you have read the Terms of Service and that the amount matches the quote you were given.</p>
+          <p>By paying, you confirm that the amount matches your quote and that you have read the Terms of Service.</p>
           <div class="button-row">
             <a class="btn btn-dark" href="terms.html">Read the full TOS</a>
             <a class="btn btn-ghost" href="commissions.html#request">Back to request form</a>

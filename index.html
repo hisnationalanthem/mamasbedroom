@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mama Anthem commissions — custom bots, character concepts, visual assets, and bundles by his_national_anthem.">
+  <meta name="description" content="Mama Anthem commissions by his_national_anthem.">
   <title>Mama Anthem — Commissions</title>
   <style>
 :root {
@@ -733,7 +733,205 @@ textarea { min-height: 150px; resize: vertical; }
   .form-card { padding: 24px; }
 }
 
-</style>
+
+.pricing-card {
+  min-height: 360px;
+}
+
+.price-big {
+  margin-top: auto;
+  padding-top: 24px;
+  font-family: var(--display);
+  font-size: 2rem;
+  color: var(--wine);
+}
+
+.price-big small {
+  font-family: var(--body);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #6a5a52;
+  margin-left: 6px;
+}
+
+.feature-list {
+  padding: 0;
+  margin: 18px 0 0;
+  list-style: none;
+}
+
+.feature-list li {
+  padding: 9px 0;
+  border-top: 1px dashed rgba(89,62,46,.22);
+  color: #4f433d;
+}
+
+.feature-list li::before {
+  content: "†";
+  color: var(--wine);
+  margin-right: 9px;
+}
+
+.scenario-callout {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(111,36,52,.18), transparent 30%),
+    linear-gradient(145deg, #251b18, #17110f);
+  color: var(--cream);
+  border-radius: 30px;
+  padding: 38px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.scenario-callout::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(248,240,228,.14);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.scenario-callout > * {
+  position: relative;
+  z-index: 1;
+}
+
+.scenario-callout h2,
+.scenario-callout h3 {
+  color: var(--cream);
+}
+
+.scenario-callout p {
+  color: rgba(248,240,228,.75);
+}
+
+.scenario-count {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.scenario-count .count-box {
+  border: 1px solid rgba(248,240,228,.2);
+  background: rgba(248,240,228,.07);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.scenario-count strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 4rem;
+  line-height: .9;
+  margin-bottom: 8px;
+}
+
+.scenario-count span {
+  color: rgba(248,240,228,.7);
+}
+
+.plus {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  opacity: .55;
+}
+
+.breakdown-row {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 28px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.breakdown-row:first-child {
+  border-top: 0;
+}
+
+.breakdown-row h3 {
+  color: var(--wine);
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.breakdown-row p {
+  margin: 0;
+  color: #4f433d;
+}
+
+.breakdown-row strong {
+  color: var(--ink);
+}
+
+.addon-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.addon-table th,
+.addon-table td {
+  text-align: left;
+  padding: 14px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.addon-table th {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--wine);
+}
+
+.addon-table td:last-child,
+.addon-table th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.badge-limited {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(111,36,52,.1);
+  color: var(--wine);
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 12px;
+}
+
+.payment-total-box {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  background: rgba(248,240,228,.48);
+}
+
+.payment-total-box strong {
+  display: block;
+  font-family: var(--display);
+  color: var(--wine);
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+  .scenario-count,
+  .breakdown-row {
+    grid-template-columns: 1fr;
+  }
+  .plus { display: none; }
+}
+
+  </style>
 </head>
 <body>
 
@@ -751,6 +949,7 @@ textarea { min-height: 150px; resize: vertical; }
   </div>
 </header>
 
+
 <main>
   <section class="hero">
     <div class="site-shell hero-grid">
@@ -758,18 +957,19 @@ textarea { min-height: 150px; resize: vertical; }
         <span class="eyebrow">his_national_anthem presents</span>
         <h1>your idea,<br><em>made worse.</em></h1>
         <p class="hero-copy">
-          Custom bot commissions, character concepts, scenario packs, and visual assets for people who arrive with a hyper-specific idea and expect me to understand the assignment.
+          Custom bot commissions, character alts, media-inspired builds, remasters, and visual assets for people
+          who arrive with a hyper-specific idea and expect me to understand the assignment.
         </p>
         <div class="button-row">
           <a class="btn btn-primary" href="commissions.html#request">Start a commission</a>
-          <a class="btn btn-ghost" href="portfolio.html">See the work</a>
+          <a class="btn btn-ghost" href="commissions.html">See pricing</a>
         </div>
       </div>
 
       <aside class="hero-card">
         <span class="status-chip"><span class="status-dot"></span> commissions open</span>
-        <h2>made to feel like yours, not a template.</h2>
-        <p>Character-first work with deliberate tone, visual consistency, clean formatting, and enough specificity to keep the concept from turning generic.</p>
+        <h2>9 from me. 1 from you.</h2>
+        <p>Every commissioned bot uses nine written scenario slots and leaves one intentionally open so the person using the bot can make a scenario of their own.</p>
         <div class="card-signoff">— mama anthem</div>
       </aside>
     </div>
@@ -779,31 +979,38 @@ textarea { min-height: 150px; resize: vertical; }
     <div class="site-shell">
       <div class="section-head">
         <div>
-          <span class="eyebrow">What I make</span>
+          <span class="eyebrow">Most requested</span>
           <h2>Commission menu</h2>
         </div>
-        <p>Choose one piece, build a bundle, or bring me a strange little project that does not fit neatly into a box.</p>
+        <p>Five base bot options, each priced by how much original development, adaptation, research, or restoration goes into it.</p>
       </div>
 
       <div class="grid grid-3">
         <article class="card service-card">
-          <span class="card-kicker">01 / Character</span>
-          <h3>Bot commissions</h3>
-          <p>Character concept, personality, relationship dynamic, bio, behavior, scenario direction, and polished presentation.</p>
-          <div class="price">Custom quote</div>
+          <span class="card-kicker">01 / Create</span>
+          <h3>Build a New Bot</h3>
+          <p>Completely original character, 9 written scenarios + 1 open slot, basic avatar, and custom nameplate.</p>
+          <div class="price">$20 CAD</div>
         </article>
+
         <article class="card service-card">
-          <span class="card-kicker">02 / Expansion</span>
-          <h3>Scenario packs</h3>
-          <p>Additional scenarios, alternate universes, relationship stages, trope packs, or focused prompt expansions for an existing character.</p>
-          <div class="price">Bundle-friendly</div>
+          <span class="card-kicker">02 / Adapt</span>
+          <h3>Create an Alt</h3>
+          <p>Use an existing character in a new setup, with an optional POV change and 9 written scenarios + 1 open slot.</p>
+          <div class="price">$14 CAD</div>
         </article>
+
         <article class="card service-card">
-          <span class="card-kicker">03 / Visual</span>
-          <h3>Graphics & assets</h3>
-          <p>Nameplates, banners, section dividers, cards, simple page graphics, and cohesive visual direction for your bot or profile.</p>
-          <div class="price">Add-on or standalone</div>
+          <span class="card-kicker">03 / Research</span>
+          <h3>Media-Inspired Bot</h3>
+          <p>A new bot heavily inspired by a movie, TV, or game character, including source research, avatar, and nameplate.</p>
+          <div class="price">$25 CAD</div>
         </article>
+      </div>
+
+      <div class="button-row">
+        <a class="btn btn-dark" href="commissions.html">View all five options</a>
+        <a class="btn btn-ghost" href="commissions.html#pricing-breakdown">Why these prices?</a>
       </div>
     </div>
   </section>
@@ -819,15 +1026,15 @@ textarea { min-height: 150px; resize: vertical; }
       <div class="grid grid-3 steps">
         <article class="card step">
           <h3>Send the brief</h3>
-          <p>Tell me the concept, POV, relationship, tone, must-haves, hard limits, references, and what you actually want delivered.</p>
+          <p>Tell me which commission type you want, the concept, POV, relationship, scenario ideas, references, and hard limits.</p>
         </article>
         <article class="card step">
           <h3>Scope & quote</h3>
-          <p>I confirm what is included, the price, and any special requirements before work begins.</p>
+          <p>I confirm what is included, any add-ons, your final total, and the expected turnaround before payment.</p>
         </article>
         <article class="card step">
-          <h3>Build & revise</h3>
-          <p>You receive the finished commission with the revision allowance agreed on at the start.</p>
+          <h3>Pay & build</h3>
+          <p>Once approved, pay securely through Stripe or PayPal. Then I build and deliver the agreed commission.</p>
         </article>
       </div>
     </div>
@@ -838,19 +1045,24 @@ textarea { min-height: 150px; resize: vertical; }
       <div class="grid grid-2">
         <div>
           <span class="eyebrow">The house rules</span>
-          <h2 style="font-size:clamp(2.2rem,5vw,4rem);">Clear boundaries make better commissions.</h2>
+          <h2 style="font-size:clamp(2.2rem,5vw,4rem);">You pay for more work, not tiny choices.</h2>
         </div>
         <div>
           <p class="quote">“Bring me the oddly specific thing. The more specific, the better.”</p>
+          <p>
+            Choosing your own scenario ideas, specifying pet names, changing POV where the commission allows it,
+            or giving me a painfully detailed brief does not create a pile of little fees.
+          </p>
           <div class="button-row">
-            <a class="btn btn-dark" href="terms.html">Read the full TOS</a>
-            <a class="btn btn-ghost" href="faq.html">Read the FAQ</a>
+            <a class="btn btn-dark" href="commissions.html#pricing-breakdown">Pricing breakdown</a>
+            <a class="btn btn-ghost" href="terms.html">Read the TOS</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 </main>
+
 
 <footer class="footer">
   <div class="site-shell footer-grid">
@@ -874,6 +1086,7 @@ textarea { min-height: 150px; resize: vertical; }
     <p class="small">© <span data-year></span> his_national_anthem. Site content may not be reposted or redistributed without permission.</p>
   </div>
 </footer>
+
 <script>
 const menuButton = document.querySelector('[data-menu]');
 const navLinks = document.querySelector('[data-nav-links]');
@@ -916,8 +1129,7 @@ if (copyButton) {
     ];
 
     try {
-      await navigator.clipboard.writeText(lines.join('
-'));
+      await navigator.clipboard.writeText(lines.join('\n'));
       status.textContent = 'Request copied. Paste it into your preferred contact method.';
     } catch {
       status.textContent = 'Copy failed. Select the form text manually and send it through your preferred contact method.';

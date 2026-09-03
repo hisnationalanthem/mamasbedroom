@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Mama Anthem commissions — custom bots, character concepts, visual assets, and bundles by his_national_anthem.">
+  <meta name="description" content="Mama Anthem commissions by his_national_anthem.">
   <title>Commissions — Mama Anthem</title>
   <style>
 :root {
@@ -732,6 +732,205 @@ textarea { min-height: 150px; resize: vertical; }
   .page-hero { padding-top: 52px; }
   .form-card { padding: 24px; }
 }
+
+
+.pricing-card {
+  min-height: 360px;
+}
+
+.price-big {
+  margin-top: auto;
+  padding-top: 24px;
+  font-family: var(--display);
+  font-size: 2rem;
+  color: var(--wine);
+}
+
+.price-big small {
+  font-family: var(--body);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #6a5a52;
+  margin-left: 6px;
+}
+
+.feature-list {
+  padding: 0;
+  margin: 18px 0 0;
+  list-style: none;
+}
+
+.feature-list li {
+  padding: 9px 0;
+  border-top: 1px dashed rgba(89,62,46,.22);
+  color: #4f433d;
+}
+
+.feature-list li::before {
+  content: "†";
+  color: var(--wine);
+  margin-right: 9px;
+}
+
+.scenario-callout {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(111,36,52,.18), transparent 30%),
+    linear-gradient(145deg, #251b18, #17110f);
+  color: var(--cream);
+  border-radius: 30px;
+  padding: 38px;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.scenario-callout::after {
+  content: "";
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(248,240,228,.14);
+  border-radius: 22px;
+  pointer-events: none;
+}
+
+.scenario-callout > * {
+  position: relative;
+  z-index: 1;
+}
+
+.scenario-callout h2,
+.scenario-callout h3 {
+  color: var(--cream);
+}
+
+.scenario-callout p {
+  color: rgba(248,240,228,.75);
+}
+
+.scenario-count {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 18px;
+  align-items: center;
+  margin-top: 28px;
+}
+
+.scenario-count .count-box {
+  border: 1px solid rgba(248,240,228,.2);
+  background: rgba(248,240,228,.07);
+  border-radius: 22px;
+  padding: 24px;
+}
+
+.scenario-count strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 4rem;
+  line-height: .9;
+  margin-bottom: 8px;
+}
+
+.scenario-count span {
+  color: rgba(248,240,228,.7);
+}
+
+.plus {
+  font-family: var(--display);
+  font-size: 2.5rem;
+  opacity: .55;
+}
+
+.breakdown-row {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 28px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.breakdown-row:first-child {
+  border-top: 0;
+}
+
+.breakdown-row h3 {
+  color: var(--wine);
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.breakdown-row p {
+  margin: 0;
+  color: #4f433d;
+}
+
+.breakdown-row strong {
+  color: var(--ink);
+}
+
+.addon-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+.addon-table th,
+.addon-table td {
+  text-align: left;
+  padding: 14px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.addon-table th {
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--wine);
+}
+
+.addon-table td:last-child,
+.addon-table th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.badge-limited {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(111,36,52,.1);
+  color: var(--wine);
+  font-size: .72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 12px;
+}
+
+.payment-total-box {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 20px;
+  background: rgba(248,240,228,.48);
+}
+
+.payment-total-box strong {
+  display: block;
+  font-family: var(--display);
+  color: var(--wine);
+  font-size: 1.35rem;
+  margin-bottom: 6px;
+}
+
+@media (max-width: 900px) {
+  .scenario-count,
+  .breakdown-row {
+    grid-template-columns: 1fr;
+  }
+  .plus { display: none; }
+}
+
   </style>
 </head>
 <body>
@@ -754,10 +953,11 @@ textarea { min-height: 150px; resize: vertical; }
 <main>
   <section class="page-hero">
     <div class="site-shell">
-      <span class="eyebrow">Commission menu</span>
+      <span class="eyebrow">Bot commissions</span>
       <h1>pick your<br><em>poison.</em></h1>
       <p class="hero-copy">
-        Start with a full bot, add onto something you already love, or bring me the oddly specific project that refuses to fit neatly into a category.
+        Five base options. No mystery fees. Final payment happens only after your commission is approved
+        and the total is confirmed.
       </p>
     </div>
   </section>
@@ -766,53 +966,41 @@ textarea { min-height: 150px; resize: vertical; }
     <div class="site-shell">
       <div class="section-head">
         <div>
-          <span class="eyebrow">What I make</span>
-          <h2>Core offerings</h2>
+          <span class="eyebrow">Create</span>
+          <h2>Start from scratch.</h2>
         </div>
-        <p>Choose one service or combine several into a custom bundle. Final pricing is based on scope.</p>
+        <p>These options involve the most original development because the bot itself is being built as a new project.</p>
       </div>
 
-      <div class="grid grid-3">
-        <article class="card service-card">
-          <span class="card-kicker">01 / Character</span>
-          <h3>Full bot commission</h3>
-          <p>A complete character build with concept development, relationship dynamic, profile copy, behavior direction, scenarios, and presentation polish.</p>
-          <ul class="list-clean">
-            <li>Character concept</li>
-            <li>Bio / profile copy</li>
-            <li>Behavior direction</li>
-            <li>Scenario development</li>
-            <li>Presentation cleanup</li>
+      <div class="grid grid-2">
+        <article class="card service-card pricing-card">
+          <span class="card-kicker">01 / Original</span>
+          <h3>Build a New Bot</h3>
+          <p>A completely new bot built around your concept, or around a concept you leave in my hands.</p>
+          <ul class="feature-list">
+            <li>Completely new character</li>
+            <li>9 written scenarios + 1 open scenario slot</li>
+            <li>You can choose the 9 scenario ideas or leave them to me</li>
+            <li>Basic avatar picture</li>
+            <li>Custom nameplate</li>
+            <li>Extra images available as add-ons</li>
           </ul>
-          <div class="price">Custom quote</div>
+          <div class="price-big">$20 <small>CAD</small></div>
         </article>
 
-        <article class="card service-card">
-          <span class="card-kicker">02 / Expansion</span>
-          <h3>Scenario packs</h3>
-          <p>More situations for an existing character: domestic, dramatic, romantic, alternate-universe, relationship-stage, or mature-theme expansions.</p>
-          <ul class="list-clean">
-            <li>SFW or mature-theme packs</li>
-            <li>Alternate universes</li>
-            <li>Relationship progression</li>
-            <li>Condensed scenario cards</li>
-            <li>Tone matching</li>
+        <article class="card service-card pricing-card">
+          <span class="card-kicker">02 / Media-inspired</span>
+          <h3>Media-Inspired Bot</h3>
+          <p>A completely new bot based on or heavily inspired by a movie, TV show, or video game character.</p>
+          <ul class="feature-list">
+            <li>Completely new bot</li>
+            <li>Additional source-material research</li>
+            <li>9 written scenarios + 1 open scenario slot</li>
+            <li>Basic avatar picture</li>
+            <li>Custom nameplate</li>
+            <li>Extra images available as add-ons</li>
           </ul>
-          <div class="price">Bundle-friendly</div>
-        </article>
-
-        <article class="card service-card">
-          <span class="card-kicker">03 / Visual</span>
-          <h3>Graphics & assets</h3>
-          <p>Small visual pieces designed to make a bot page, masterlist, profile, or commission feel cohesive.</p>
-          <ul class="list-clean">
-            <li>Nameplates</li>
-            <li>Horizontal dividers</li>
-            <li>Banners</li>
-            <li>Section cards</li>
-            <li>Visual direction</li>
-          </ul>
-          <div class="price">Add-on or standalone</div>
+          <div class="price-big">$25 <small>CAD</small></div>
         </article>
       </div>
     </div>
@@ -822,44 +1010,203 @@ textarea { min-height: 150px; resize: vertical; }
     <div class="site-shell">
       <div class="section-head">
         <div>
+          <span class="eyebrow">Expand</span>
+          <h2>Use what already exists.</h2>
+        </div>
+        <p>These are cheaper because the character or concept foundation is already there.</p>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card service-card pricing-card">
+          <span class="card-kicker">03 / Alternate version</span>
+          <h3>Create an Alt</h3>
+          <p>Reuse one of my existing characters in a new situation, relationship setup, universe, or POV.</p>
+          <ul class="feature-list">
+            <li>Uses the same character</li>
+            <li>POV can be changed</li>
+            <li>9 written scenarios + 1 open scenario slot</li>
+            <li>Extra images available as add-ons</li>
+          </ul>
+          <div class="price-big">$14 <small>CAD</small></div>
+        </article>
+
+        <article class="card service-card pricing-card">
+          <span class="badge-limited">Limited availability</span>
+          <span class="card-kicker">04 / Request graveyard</span>
+          <h3>Resurrect a Request</h3>
+          <p>Choose from an unused request with predetermined tropes or scenarios and finally drag it out of the grave.</p>
+          <ul class="feature-list">
+            <li>Can become a new bot or an alt</li>
+            <li>Starts from a pre-existing unused request</li>
+            <li>Predetermined scenarios / tropes</li>
+            <li>Add-ons can expand the concept where applicable</li>
+            <li>Slots depend on what is left in the graveyard</li>
+          </ul>
+          <div class="price-big">$12 <small>CAD</small></div>
+        </article>
+
+        <article class="card service-card pricing-card">
+          <span class="badge-limited">Archive service</span>
+          <span class="card-kicker">05 / Restoration</span>
+          <h3>Bot Remaster</h3>
+          <p>Bring an older bot up to my current standards without replacing the character you already like.</p>
+          <ul class="feature-list">
+            <li>Uses the same character</li>
+            <li>Existing scenarios rewritten</li>
+            <li>Avatar adjusted / cleaned up</li>
+            <li>Profile consistency improved</li>
+            <li>Currently eligible: April–June 2026 bots</li>
+          </ul>
+          <div class="price-big">$15 <small>CAD</small></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="site-shell">
+      <div class="scenario-callout">
+        <span class="eyebrow" style="color:#d6b6b0;">The scenario rule</span>
+        <h2 style="font-size:clamp(2.5rem,5vw,4.4rem);margin:18px 0 12px;">9 from me. 1 from you.</h2>
+        <p>
+          Each bot can hold a maximum of 10 scenario slots. For commissioned bots that use a fresh scenario set,
+          I write nine complete scenarios and intentionally leave the tenth slot open.
+        </p>
+        <div class="scenario-count">
+          <div class="count-box">
+            <strong>9</strong>
+            <span>written scenarios created for the commission</span>
+          </div>
+          <div class="plus">+</div>
+          <div class="count-box">
+            <strong>1</strong>
+            <span>open slot for whoever uses the bot to create their own scenario</span>
+          </div>
+        </div>
+        <p style="margin-top:22px;">
+          The blank slot is intentional. It gives the user room to make one scenario completely their own instead of filling every available slot for them.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing-breakdown">
+    <div class="site-shell">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Pricing transparency</span>
+          <h2>Why it costs what it costs.</h2>
+        </div>
+        <p>Prices are based on how much original development, adaptation, research, or restoration the commission requires.</p>
+      </div>
+
+      <div class="breakdown-row">
+        <h3>New Bot — $20</h3>
+        <p><strong>Why:</strong> this is the full from-scratch option. I am developing the character, relationship dynamic, nine written scenarios, avatar, and nameplate as one complete commission.</p>
+      </div>
+
+      <div class="breakdown-row">
+        <h3>Alt — $14</h3>
+        <p><strong>Why:</strong> the character foundation already exists, so I am not rebuilding their entire identity. The price covers developing the new setup, optional POV change, and fresh scenario package.</p>
+      </div>
+
+      <div class="breakdown-row">
+        <h3>Media — $25</h3>
+        <p><strong>Why:</strong> this includes the same kind of full development as a new bot, plus additional research so the inspiration remains recognizable and internally consistent.</p>
+      </div>
+
+      <div class="breakdown-row">
+        <h3>Graveyard — $12</h3>
+        <p><strong>Why:</strong> the original request already exists with predetermined tropes or scenarios, so part of the creative planning has already been done. You are paying me to finish, polish, and resurrect it.</p>
+      </div>
+
+      <div class="breakdown-row">
+        <h3>Remaster — $15</h3>
+        <p><strong>Why:</strong> I am not starting from zero, but remastering still means revisiting older material, rewriting existing scenarios, correcting inconsistencies, and updating the visual presentation.</p>
+      </div>
+
+      <div class="callout" style="margin-top:28px;">
+        <strong>You are not charged for being specific.</strong>
+        Choosing your own scenario ideas, giving me detailed preferences, specifying pet names, or changing POV where the commission type allows it does not create extra little fees.
+        Add-ons are for genuinely additional work.
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted" id="add-ons">
+    <div class="site-shell">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Optional extras</span>
+          <h2>Add-ons</h2>
+        </div>
+        <p>There are no scenario add-ons because bots are capped at 10 total scenario slots.</p>
+      </div>
+
+      <div class="card">
+        <table class="addon-table">
+          <thead>
+            <tr>
+              <th>Add-on</th>
+              <th>What it covers</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1 extra image</strong></td>
+              <td>Additional image generation/editing and consistency work.</td>
+              <td>+$3 CAD</td>
+            </tr>
+            <tr>
+              <td><strong>3 extra images</strong></td>
+              <td>Discounted image bundle for a commission that needs more visual material.</td>
+              <td>+$7 CAD</td>
+            </tr>
+            <tr>
+              <td><strong>Extra graphic</strong></td>
+              <td>Additional banner, nameplate, divider, or similar visual asset.</td>
+              <td>+$3 CAD</td>
+            </tr>
+            <tr>
+              <td><strong>Rush commission</strong></td>
+              <td>Your commission is prioritized ahead of the normal queue when availability allows.</td>
+              <td>+30%</td>
+            </tr>
+            <tr>
+              <td><strong>Major change after approval</strong></td>
+              <td>A substantial concept or scope change after the commission has already been approved.</td>
+              <td>Requote</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="small" style="margin-top:18px;">Image/graphic add-ons apply where they make sense for the selected commission type.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="site-shell">
+      <div class="section-head">
+        <div>
           <span class="eyebrow">How it works</span>
-          <h2>Simple process. No guessing.</h2>
+          <h2>Request → quote → payment.</h2>
         </div>
       </div>
 
       <div class="grid grid-3 steps">
         <article class="card step">
           <h3>Send the brief</h3>
-          <p>Tell me the concept, POV, relationship, tone, must-haves, hard limits, references, and what you actually want delivered.</p>
+          <p>Choose the commission type and tell me the character, dynamic, POV, setting, scenario ideas, references, and hard limits.</p>
         </article>
         <article class="card step">
-          <h3>Scope & quote</h3>
-          <p>I confirm what is included, the price, turnaround, and any special requirements before work begins.</p>
+          <h3>I confirm the total</h3>
+          <p>I review the request, confirm availability, add-ons, final price, turnaround, and revision scope.</p>
         </article>
         <article class="card step">
-          <h3>Build & revise</h3>
-          <p>You receive the finished commission with the revision allowance agreed on at the start.</p>
+          <h3>Then you pay</h3>
+          <p>Once approved, use Stripe or PayPal. Do not send payment before you receive the final quote.</p>
         </article>
-      </div>
-    </div>
-  </section>
-
-  
-  <section class="section" id="payment-callout">
-    <div class="site-shell">
-      <div class="grid grid-2">
-        <div>
-          <span class="eyebrow">After approval</span>
-          <h2 style="font-size:clamp(2.2rem,5vw,4rem);">Payment comes after the quote.</h2>
-        </div>
-        <div class="card">
-          <span class="card-kicker">Secure checkout</span>
-          <h3>Stripe or PayPal</h3>
-          <p>Once your commission has been approved and the total is confirmed, use the payment page to complete checkout. Do not send payment before approval.</p>
-          <div class="button-row">
-            <a class="btn btn-primary" href="payment.html">Go to payment</a>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -871,7 +1218,7 @@ textarea { min-height: 150px; resize: vertical; }
           <span class="eyebrow">Request form</span>
           <h2>Send the idea.</h2>
         </div>
-        <p>Fill this out, copy the finished request, and paste it into the contact method listed on the site.</p>
+        <p>Fill this out and copy the finished request into the contact method listed on the site.</p>
       </div>
 
       <div class="form-card">
@@ -890,17 +1237,17 @@ textarea { min-height: 150px; resize: vertical; }
             <div class="field">
               <label for="type">Commission type</label>
               <select id="type" name="type">
-                <option>Full bot build</option>
-                <option>Scenario pack</option>
-                <option>Graphics & assets</option>
-                <option>Bundle</option>
-                <option>Something else</option>
+                <option>Build a New Bot — $20 CAD</option>
+                <option>Create an Alt — $14 CAD</option>
+                <option>Media-Inspired Bot — $25 CAD</option>
+                <option>Resurrect a Request — $12 CAD</option>
+                <option>Bot Remaster — $15 CAD</option>
               </select>
             </div>
 
             <div class="field">
-              <label for="budget">Budget</label>
-              <input id="budget" name="budget" type="text" placeholder="Optional">
+              <label for="budget">Add-ons / budget</label>
+              <input id="budget" name="budget" type="text" placeholder="Optional add-ons or maximum budget">
             </div>
 
             <div class="field field-full">
@@ -910,12 +1257,12 @@ textarea { min-height: 150px; resize: vertical; }
 
             <div class="field field-full">
               <label for="details">Project details</label>
-              <textarea id="details" name="details" placeholder="Character, dynamic, POV, setting, tone, must-haves, hard limits, and what you want delivered."></textarea>
+              <textarea id="details" name="details" placeholder="Character, relationship dynamic, POV, setting, the 9 scenario ideas if you want to choose them, must-haves, hard limits, and anything else I should know."></textarea>
             </div>
 
             <div class="field field-full">
               <label for="references">References / links</label>
-              <textarea id="references" name="references" placeholder="Images, existing bot links, inspiration, moodboards, etc."></textarea>
+              <textarea id="references" name="references" placeholder="Existing bot links, source material, images, inspiration, moodboards, request-graveyard entry, etc."></textarea>
             </div>
 
             <div class="field field-full">
@@ -1003,8 +1350,7 @@ if (copyButton) {
     ];
 
     try {
-      await navigator.clipboard.writeText(lines.join('
-'));
+      await navigator.clipboard.writeText(lines.join('\n'));
       status.textContent = 'Request copied. Paste it into your preferred contact method.';
     } catch {
       status.textContent = 'Copy failed. Select the form text manually and send it through your preferred contact method.';
