@@ -745,7 +745,7 @@ textarea { min-height: 150px; resize: vertical; }
     </a>
     <button class="mobile-toggle" type="button" data-menu aria-expanded="false" aria-label="Toggle navigation">Menu</button>
     <ul class="nav-links" data-nav-links>
-      <li><a href="index.html">Home</a></li><li><a href="commissions.html" aria-current="page">Commissions</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="terms.html">TOS</a></li><li><a href="faq.html">FAQ</a></li><li><a class="nav-cta" href="commissions.html#request">Commission me</a></li>
+      <li><a href="index.html">Home</a></li><li><a href="commissions.html" aria-current="page">Commissions</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="terms.html">TOS</a></li><li><a href="faq.html">FAQ</a></li><li><a href="payment.html">Payment</a></li><li><a class="nav-cta" href="commissions.html#request">Commission me</a></li>
     </ul>
   </div>
 </header>
@@ -844,6 +844,26 @@ textarea { min-height: 150px; resize: vertical; }
     </div>
   </section>
 
+  
+  <section class="section" id="payment-callout">
+    <div class="site-shell">
+      <div class="grid grid-2">
+        <div>
+          <span class="eyebrow">After approval</span>
+          <h2 style="font-size:clamp(2.2rem,5vw,4rem);">Payment comes after the quote.</h2>
+        </div>
+        <div class="card">
+          <span class="card-kicker">Secure checkout</span>
+          <h3>Stripe or PayPal</h3>
+          <p>Once your commission has been approved and the total is confirmed, use the payment page to complete checkout. Do not send payment before approval.</p>
+          <div class="button-row">
+            <a class="btn btn-primary" href="payment.html">Go to payment</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section-muted" id="request">
     <div class="site-shell">
       <div class="section-head">
@@ -932,6 +952,7 @@ textarea { min-height: 150px; resize: vertical; }
       <a href="portfolio.html">Work</a>
       <a href="terms.html">Terms</a>
       <a href="faq.html">FAQ</a>
+      <a href="payment.html">Payment</a>
       <a href="#" title="Replace this # with your Ko-fi URL">Ko-fi</a>
     </div>
   </div>
@@ -994,6 +1015,35 @@ if (copyButton) {
 document.querySelectorAll('[data-year]').forEach(el => {
   el.textContent = new Date().getFullYear();
 });
+
+
+const PAYMENT_LINKS = {
+  stripe: "",
+  paypal: ""
+};
+
+document.querySelectorAll('[data-payment-provider]').forEach(button => {
+  const provider = button.getAttribute('data-payment-provider');
+  const url = PAYMENT_LINKS[provider];
+
+  if (url) {
+    button.href = url;
+    button.setAttribute('target', '_blank');
+    button.setAttribute('rel', 'noopener');
+  } else {
+    button.href = '#payment-not-connected';
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      const status = document.querySelector('[data-payment-status]');
+      if (status) {
+        const pretty = provider === 'stripe' ? 'Stripe' : 'PayPal';
+        status.textContent = `${pretty} checkout is not connected yet. Your commission will not be charged.`;
+        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+});
+
 </script>
 
 </body>

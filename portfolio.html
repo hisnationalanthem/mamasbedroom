@@ -745,7 +745,7 @@ textarea { min-height: 150px; resize: vertical; }
     </a>
     <button class="mobile-toggle" type="button" data-menu aria-expanded="false" aria-label="Toggle navigation">Menu</button>
     <ul class="nav-links" data-nav-links>
-      <li><a href="index.html">Home</a></li><li><a href="commissions.html">Commissions</a></li><li><a href="portfolio.html" aria-current="page">Portfolio</a></li><li><a href="terms.html">TOS</a></li><li><a href="faq.html">FAQ</a></li><li><a class="nav-cta" href="commissions.html#request">Commission me</a></li>
+      <li><a href="index.html">Home</a></li><li><a href="commissions.html">Commissions</a></li><li><a href="portfolio.html" aria-current="page">Portfolio</a></li><li><a href="terms.html">TOS</a></li><li><a href="faq.html">FAQ</a></li><li><a href="payment.html">Payment</a></li><li><a class="nav-cta" href="commissions.html#request">Commission me</a></li>
     </ul>
   </div>
 </header>
@@ -858,6 +858,7 @@ textarea { min-height: 150px; resize: vertical; }
       <a href="portfolio.html">Work</a>
       <a href="terms.html">Terms</a>
       <a href="faq.html">FAQ</a>
+      <a href="payment.html">Payment</a>
       <a href="#" title="Replace this # with your Ko-fi URL">Ko-fi</a>
     </div>
   </div>
@@ -920,6 +921,35 @@ if (copyButton) {
 document.querySelectorAll('[data-year]').forEach(el => {
   el.textContent = new Date().getFullYear();
 });
+
+
+const PAYMENT_LINKS = {
+  stripe: "",
+  paypal: ""
+};
+
+document.querySelectorAll('[data-payment-provider]').forEach(button => {
+  const provider = button.getAttribute('data-payment-provider');
+  const url = PAYMENT_LINKS[provider];
+
+  if (url) {
+    button.href = url;
+    button.setAttribute('target', '_blank');
+    button.setAttribute('rel', 'noopener');
+  } else {
+    button.href = '#payment-not-connected';
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      const status = document.querySelector('[data-payment-status]');
+      if (status) {
+        const pretty = provider === 'stripe' ? 'Stripe' : 'PayPal';
+        status.textContent = `${pretty} checkout is not connected yet. Your commission will not be charged.`;
+        status.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    });
+  }
+});
+
 </script>
 
 </body>

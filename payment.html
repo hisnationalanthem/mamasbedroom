@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Mama Anthem commissions — custom bots, character concepts, visual assets, and bundles by his_national_anthem.">
-  <title>FAQ — Mama Anthem</title>
+  <title>Payment — Mama Anthem</title>
   <style>
 :root {
   --ink: #171310;
@@ -745,7 +745,7 @@ textarea { min-height: 150px; resize: vertical; }
     </a>
     <button class="mobile-toggle" type="button" data-menu aria-expanded="false" aria-label="Toggle navigation">Menu</button>
     <ul class="nav-links" data-nav-links>
-      <li><a href="index.html">Home</a></li><li><a href="commissions.html">Commissions</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="terms.html">TOS</a></li><li><a href="faq.html" aria-current="page">FAQ</a></li><li><a href="payment.html">Payment</a></li><li><a class="nav-cta" href="commissions.html#request">Commission me</a></li>
+      <li><a href="index.html">Home</a></li><li><a href="commissions.html">Commissions</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="terms.html">TOS</a></li><li><a href="faq.html">FAQ</a></li><li><a href="payment.html" aria-current="page">Payment</a></li><li><a class="nav-cta" href="commissions.html#request">Commission me</a></li>
     </ul>
   </div>
 </header>
@@ -754,59 +754,100 @@ textarea { min-height: 150px; resize: vertical; }
 <main>
   <section class="page-hero">
     <div class="site-shell">
-      <span class="eyebrow">Questions, answered</span>
-      <h1>before you<br><em>ask.</em></h1>
+      <span class="eyebrow">Approved commissions only</span>
+      <h1>payment.</h1>
       <p class="hero-copy">
-        What you can commission, what to send me, how pricing works, and what happens if your idea is alarmingly specific.
+        Your commission should already be approved and quoted before you pay.
+        Choose whichever checkout method is easiest for you.
       </p>
     </div>
   </section>
 
   <section class="section section-muted">
-    <div class="site-shell" style="max-width:900px;">
-      <div class="faq-item open" data-faq>
-        <button class="faq-button" type="button">Do you take custom bot commissions? <span>+</span></button>
-        <div class="faq-answer">Yes. Full builds can include concept development, profile copy, behavior direction, relationship dynamics, scenarios, and presentation polish depending on the agreed scope.</div>
+    <div class="site-shell">
+      <div class="notice">
+        <strong>Do not pay before approval.</strong>
+        If you have not received a confirmed commission total from me yet, return to the commission request page first.
       </div>
 
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Can I commission additions to a bot I already have? <span>+</span></button>
-        <div class="faq-answer">Yes. Scenario packs, alternate universes, relationship progression, profile cleanup, and visual assets can all be commissioned separately.</div>
+      <div class="section-head" style="margin-top:48px;">
+        <div>
+          <span class="eyebrow">Choose checkout</span>
+          <h2>Secure payment options</h2>
+        </div>
+        <p>The payment processor handles your card or account details. This website does not store payment-card information.</p>
       </div>
 
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Do you accept NSFW or mature themes? <span>+</span></button>
-        <div class="faq-answer">Mature-theme commissions may be accepted for adult clients. All characters involved in sexual or explicitly mature material must be adults, and requests remain subject to my boundaries and platform rules.</div>
+      <div class="grid grid-2">
+        <article class="card service-card">
+          <span class="card-kicker">01 / Card checkout</span>
+          <h3>Stripe</h3>
+          <p>Use Stripe for secure card checkout once your commission total has been approved.</p>
+          <ul class="list-clean">
+            <li>Secure hosted checkout</li>
+            <li>No card details stored on this site</li>
+            <li>Use only the amount you were quoted</li>
+          </ul>
+          <div class="button-row" style="margin-top:auto;padding-top:26px;">
+            <a class="btn btn-primary" href="#" data-payment-provider="stripe">Pay with Stripe</a>
+          </div>
+        </article>
+
+        <article class="card service-card">
+          <span class="card-kicker">02 / PayPal</span>
+          <h3>PayPal</h3>
+          <p>Use PayPal if that is your preferred checkout method after your commission has been approved.</p>
+          <ul class="list-clean">
+            <li>Hosted by PayPal</li>
+            <li>Do not use Friends & Family for commission payments</li>
+            <li>Use only the amount you were quoted</li>
+          </ul>
+          <div class="button-row" style="margin-top:auto;padding-top:26px;">
+            <a class="btn btn-dark" href="#" data-payment-provider="paypal">Pay with PayPal</a>
+          </div>
+        </article>
       </div>
 
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Can I send reference images? <span>+</span></button>
-        <div class="faq-answer">Yes. References are useful for appearance, clothing, setting, mood, color, and overall direction. Tell me what you want me to take from each reference.</div>
+      <div class="notice" id="payment-not-connected" data-payment-status style="margin-top:24px;">
+        Stripe and PayPal links have not been connected yet. The buttons above are safe placeholders and cannot charge anyone.
       </div>
+    </div>
+  </section>
 
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Can you copy another person's commission? <span>+</span></button>
-        <div class="faq-answer">No. You can reference general tone, format, or aesthetic direction, but I will not reproduce another client's custom concept.</div>
+  <section class="section">
+    <div class="site-shell">
+      <div class="grid grid-3 steps">
+        <article class="card step">
+          <h3>Request</h3>
+          <p>Submit the commission brief so I can confirm whether I can take the project.</p>
+        </article>
+        <article class="card step">
+          <h3>Approve & quote</h3>
+          <p>I confirm the final scope, price, turnaround, and revision allowance before payment.</p>
+        </article>
+        <article class="card step">
+          <h3>Pay securely</h3>
+          <p>Use Stripe or PayPal only after receiving the approved total.</p>
+        </article>
       </div>
+    </div>
+  </section>
 
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">How much do commissions cost? <span>+</span></button>
-        <div class="faq-answer">Pricing depends on scope, complexity, deliverables, and revision needs. I confirm a quote before work begins.</div>
-      </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Do you take rush commissions? <span>+</span></button>
-        <div class="faq-answer">Possibly, depending on availability. Include any hard deadline before payment so I can confirm whether it is realistic.</div>
-      </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">What if my idea is extremely specific? <span>+</span></button>
-        <div class="faq-answer">Good. Include the tiny details: dynamic, pet names, motifs, POV, hard limits, visual references, and anything you already know you do not want.</div>
-      </div>
-
-      <div class="button-row">
-        <a class="btn btn-primary" href="commissions.html#request">Send a request</a>
-        <a class="btn btn-ghost" href="terms.html">Read the TOS</a>
+  <section class="section section-muted">
+    <div class="site-shell">
+      <div class="grid grid-2">
+        <div>
+          <span class="eyebrow">Before checkout</span>
+          <h2 style="font-size:clamp(2.2rem,5vw,4rem);">One last boring-but-important bit.</h2>
+        </div>
+        <div>
+          <p class="quote">“Payment confirms the commission scope you already approved.”</p>
+          <p>By paying, you confirm that you have read the Terms of Service and that the amount matches the quote you were given.</p>
+          <div class="button-row">
+            <a class="btn btn-dark" href="terms.html">Read the full TOS</a>
+            <a class="btn btn-ghost" href="commissions.html#request">Back to request form</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -878,8 +919,7 @@ if (copyButton) {
     ];
 
     try {
-      await navigator.clipboard.writeText(lines.join('
-'));
+      await navigator.clipboard.writeText(lines.join('\n'));
       status.textContent = 'Request copied. Paste it into your preferred contact method.';
     } catch {
       status.textContent = 'Copy failed. Select the form text manually and send it through your preferred contact method.';

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Mama Anthem commissions — custom bots, character concepts, visual assets, and bundles by his_national_anthem.">
-  <title>FAQ — Mama Anthem</title>
+  <title>Checkout Cancelled — Mama Anthem</title>
   <style>
 :root {
   --ink: #171310;
@@ -745,69 +745,32 @@ textarea { min-height: 150px; resize: vertical; }
     </a>
     <button class="mobile-toggle" type="button" data-menu aria-expanded="false" aria-label="Toggle navigation">Menu</button>
     <ul class="nav-links" data-nav-links>
-      <li><a href="index.html">Home</a></li><li><a href="commissions.html">Commissions</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="terms.html">TOS</a></li><li><a href="faq.html" aria-current="page">FAQ</a></li><li><a href="payment.html">Payment</a></li><li><a class="nav-cta" href="commissions.html#request">Commission me</a></li>
+      <li><a href="index.html">Home</a></li><li><a href="commissions.html">Commissions</a></li><li><a href="portfolio.html">Portfolio</a></li><li><a href="terms.html">TOS</a></li><li><a href="faq.html">FAQ</a></li><li><a href="payment.html">Payment</a></li><li><a class="nav-cta" href="commissions.html#request">Commission me</a></li>
     </ul>
   </div>
 </header>
 
 
 <main>
-  <section class="page-hero">
-    <div class="site-shell">
-      <span class="eyebrow">Questions, answered</span>
-      <h1>before you<br><em>ask.</em></h1>
-      <p class="hero-copy">
-        What you can commission, what to send me, how pricing works, and what happens if your idea is alarmingly specific.
-      </p>
-    </div>
-  </section>
-
-  <section class="section section-muted">
-    <div class="site-shell" style="max-width:900px;">
-      <div class="faq-item open" data-faq>
-        <button class="faq-button" type="button">Do you take custom bot commissions? <span>+</span></button>
-        <div class="faq-answer">Yes. Full builds can include concept development, profile copy, behavior direction, relationship dynamics, scenarios, and presentation polish depending on the agreed scope.</div>
+  <section class="hero">
+    <div class="site-shell hero-grid">
+      <div>
+        <span class="eyebrow">Checkout cancelled</span>
+        <h1>no harm,<br><em>no charge.</em></h1>
+        <p class="hero-copy">
+          Checkout was cancelled or not completed. Nothing on this page charges you. You can return to payment whenever you are ready.
+        </p>
+        <div class="button-row">
+          <a class="btn btn-primary" href="payment.html">Return to payment</a>
+          <a class="btn btn-ghost" href="commissions.html#request">Back to request</a>
+        </div>
       </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Can I commission additions to a bot I already have? <span>+</span></button>
-        <div class="faq-answer">Yes. Scenario packs, alternate universes, relationship progression, profile cleanup, and visual assets can all be commissioned separately.</div>
-      </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Do you accept NSFW or mature themes? <span>+</span></button>
-        <div class="faq-answer">Mature-theme commissions may be accepted for adult clients. All characters involved in sexual or explicitly mature material must be adults, and requests remain subject to my boundaries and platform rules.</div>
-      </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Can I send reference images? <span>+</span></button>
-        <div class="faq-answer">Yes. References are useful for appearance, clothing, setting, mood, color, and overall direction. Tell me what you want me to take from each reference.</div>
-      </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Can you copy another person's commission? <span>+</span></button>
-        <div class="faq-answer">No. You can reference general tone, format, or aesthetic direction, but I will not reproduce another client's custom concept.</div>
-      </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">How much do commissions cost? <span>+</span></button>
-        <div class="faq-answer">Pricing depends on scope, complexity, deliverables, and revision needs. I confirm a quote before work begins.</div>
-      </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">Do you take rush commissions? <span>+</span></button>
-        <div class="faq-answer">Possibly, depending on availability. Include any hard deadline before payment so I can confirm whether it is realistic.</div>
-      </div>
-
-      <div class="faq-item" data-faq>
-        <button class="faq-button" type="button">What if my idea is extremely specific? <span>+</span></button>
-        <div class="faq-answer">Good. Include the tiny details: dynamic, pet names, motifs, POV, hard limits, visual references, and anything you already know you do not want.</div>
-      </div>
-
-      <div class="button-row">
-        <a class="btn btn-primary" href="commissions.html#request">Send a request</a>
-        <a class="btn btn-ghost" href="terms.html">Read the TOS</a>
-      </div>
+      <aside class="hero-card">
+        <span class="status-chip">checkout incomplete</span>
+        <h2>your commission request is still separate from payment.</h2>
+        <p>If you need the total confirmed again, use the contact method from your approved commission conversation.</p>
+        <div class="card-signoff">— mama anthem</div>
+      </aside>
     </div>
   </section>
 </main>
@@ -878,8 +841,7 @@ if (copyButton) {
     ];
 
     try {
-      await navigator.clipboard.writeText(lines.join('
-'));
+      await navigator.clipboard.writeText(lines.join('\n'));
       status.textContent = 'Request copied. Paste it into your preferred contact method.';
     } catch {
       status.textContent = 'Copy failed. Select the form text manually and send it through your preferred contact method.';
