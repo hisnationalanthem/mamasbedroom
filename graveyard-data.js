@@ -115,7 +115,7 @@ const GRAVEYARD_REQUESTS = [
     "id": "RG-015",
     "gender": "Male",
     "title": "Quinn Hughes (Oral Fixation) (NHL)",
-    "status": "available",
+    "status": "claimed",
     "note": ""
   },
   {
