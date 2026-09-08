@@ -356,6 +356,99 @@ textarea:focus-visible {
 }
 */
 
+
+/* =========================================================
+   12. HERO SIGN-OFF FIX
+   ---------------------------------------------------------
+   Keep “— mama anthem” in the normal text flow so it never
+   overlaps the paragraph above it.
+   ========================================================= */
+
+.hero-card-photo .card-signoff {
+  position: static !important;
+  left: auto !important;
+  bottom: auto !important;
+  margin-top: 10px !important;
+  align-self: flex-start;
+  line-height: 1.1;
+}
+
+.hero-card-photo p {
+  margin-bottom: 0 !important;
+}
+
+
+/* =========================================================
+   13. CUPCAKE + BUNNY FEATURE — TEXT/CROP FIX
+   ---------------------------------------------------------
+   The long heading was being broken in the middle of words
+   and clipped by the dark panel. These rules keep whole words
+   together and give the copy more room.
+   ========================================================= */
+
+.editorial-grid {
+  grid-template-columns: minmax(0, 48%) minmax(0, 52%) !important;
+  align-items: stretch;
+}
+
+.editorial-copy {
+  min-width: 0;
+  overflow: visible !important;
+  padding: clamp(28px, 4vw, 50px) !important;
+}
+
+.editorial-copy h2 {
+  font-size: clamp(2rem, 3vw, 3.25rem) !important;
+  line-height: 1.02 !important;
+  max-width: 100%;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  hyphens: none !important;
+}
+
+.editorial-photo {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 520px !important;
+  object-fit: cover !important;
+  object-position: center 50% !important;
+}
+
+/* Stack the image and text a little earlier, before the copy
+   starts feeling cramped. */
+@media (max-width: 1050px) {
+  .editorial-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .editorial-photo {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 620px;
+    aspect-ratio: 4 / 3;
+    object-fit: cover !important;
+    object-position: center 48% !important;
+  }
+
+  .editorial-copy h2 {
+    font-size: clamp(2rem, 7vw, 3.5rem) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .editorial-photo {
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    object-position: center 46% !important;
+  }
+
+  .editorial-copy h2 {
+    font-size: clamp(1.9rem, 10vw, 2.8rem) !important;
+    line-height: 1.02 !important;
+  }
+}
+
+
     
 :root {
   --ink: #171310;
