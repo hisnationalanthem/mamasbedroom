@@ -120,34 +120,6 @@
   max-width: 100%;
 }
 
-
-/* =========================================================
-   5. DECORATIVE DRIED FLOWERS
-   ---------------------------------------------------------
-   Keep them subtle and away from readable content.
-   ========================================================= */
-
-.dried-flower-decoration {
-  width: var(--tweak-flower-decoration-size) !important;
-  opacity: var(--tweak-flower-decoration-opacity) !important;
-  right: 8px !important;
-  top: 8px !important;
-  z-index: 0 !important;
-  pointer-events: none !important;
-}
-
-.visual-section > .site-shell {
-  position: relative;
-  z-index: 1;
-}
-
-@media (max-width: 1100px) {
-  .dried-flower-decoration {
-    display: none !important;
-  }
-}
-
-
 /* =========================================================
    6. REQUEST FORM JOURNAL BANNER
    ========================================================= */
@@ -332,11 +304,6 @@ textarea:focus-visible {
    Uncomment any block below if you want that behavior.
    ========================================================= */
 
-/* Hide ALL dried-flower edge decorations:
-.dried-flower-decoration {
-  display: none !important;
-}
-*/
 
 /* Hide the entire journal decoration above the request form:
 .request-sticker-panel {
@@ -1492,7 +1459,7 @@ textarea { min-height: 150px; resize: vertical; }
 .floral-section{position:relative;isolation:isolate;overflow:hidden}.floral-section::before{content:"";position:absolute;inset:0;z-index:-2;background:linear-gradient(rgba(239,229,210,.90),rgba(239,229,210,.90)),url("wallpaper.webp") center/cover no-repeat}.floral-section::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(111,36,52,.025));pointer-events:none}
 .hero-card-photo{background-size:cover!important;background-position:center!important;display:flex;flex-direction:column;justify-content:flex-end}.hero-card-photo::before{opacity:.07}.hero-card-photo .status-chip{align-self:flex-start}.home-hero-photo{background-image:linear-gradient(180deg,rgba(23,15,13,.10) 0%,rgba(23,15,13,.38) 45%,rgba(23,15,13,.93) 100%),url("hero-journal.webp")!important;background-position:center 48%!important}.success-hero-photo{background-image:linear-gradient(180deg,rgba(23,15,13,.06),rgba(23,15,13,.88)),url("success-cupcake.webp")!important;background-position:center 45%!important}.cancel-hero-photo{background-image:linear-gradient(180deg,rgba(23,15,13,.08),rgba(23,15,13,.88)),url("cancelled-cupcake.webp")!important;background-position:center 48%!important}
 .editorial-card{overflow:hidden;border-radius:28px;border:1px solid var(--line);background:#1f1815;color:var(--cream);box-shadow:var(--shadow)}.editorial-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);min-height:500px}.editorial-photo{min-height:420px;width:100%;height:100%;object-fit:cover}.editorial-copy{padding:clamp(30px,5vw,58px);display:flex;flex-direction:column;justify-content:center}.editorial-copy p{color:rgba(248,240,228,.74)}.editorial-copy h2{color:var(--cream);font-size:clamp(2.35rem,5vw,4.6rem);margin:12px 0 16px}.editorial-copy .eyebrow{color:#d9b9b1}.mascot-caption{display:inline-flex;gap:8px;align-items:center;font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;font-weight:900;color:rgba(248,240,228,.58);margin-top:20px}
-.visual-section{position:relative}.dried-flower-decoration{position:absolute;width:min(250px,25vw);height:auto;right:max(8px,calc((100vw - 1180px)/2 - 80px));top:-58px;transform:rotate(7deg);opacity:.74;pointer-events:none;filter:drop-shadow(0 16px 22px rgba(49,30,22,.14));z-index:2}
+.visual-section{position:relative}.{position:absolute;width:min(250px,25vw);height:auto;right:max(8px,calc((100vw - 1180px)/2 - 80px));top:-58px;transform:rotate(7deg);opacity:.74;pointer-events:none;filter:drop-shadow(0 16px 22px rgba(49,30,22,.14));z-index:2}
 .card-media{width:100%;height:190px;object-fit:cover;border-radius:16px;margin:-4px 0 18px;border:1px solid rgba(89,62,46,.18)}.graveyard-option .card-media{object-position:center 34%;filter:saturate(.84) contrast(1.04)}
 .scenario-callout{padding:0!important}.scenario-visual-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);align-items:stretch;min-height:590px}.scenario-photo-wrap{min-height:500px;overflow:hidden;border-radius:29px 0 0 29px}.scenario-photo{width:100%;height:100%;object-fit:cover;object-position:center 42%}.scenario-copy{padding:clamp(30px,5vw,52px);display:flex;flex-direction:column;justify-content:center}.scenario-copy .scenario-count{grid-template-columns:1fr 1fr}.scenario-copy .plus{display:none}
 .request-layout{display:grid;grid-template-columns:minmax(210px,300px) minmax(0,1fr);gap:28px;align-items:center}.request-sticker-panel{position:relative;min-height:510px;display:grid;place-items:center}.request-journal{position:relative;z-index:2;width:min(290px,100%);transform:rotate(-4deg);filter:drop-shadow(0 24px 24px rgba(46,26,19,.22))}.request-flowers{position:absolute;width:220px;bottom:6px;right:-8px;transform:rotate(16deg);opacity:.76;filter:drop-shadow(0 18px 20px rgba(46,26,19,.14))}.request-note{position:absolute;z-index:3;left:8px;bottom:22px;width:170px;padding:14px 15px;background:rgba(248,240,228,.92);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 30px rgba(34,20,16,.10);font-family:var(--display);font-style:italic;color:#47362f;transform:rotate(2deg)}
@@ -1592,22 +1559,6 @@ textarea { min-height: 150px; resize: vertical; }
 .visual-section > .site-shell {
   position: relative;
   z-index: 1;
-}
-
-/* Pricing flowers: small edge accent only */
-.dried-flower-decoration {
-  width: 150px !important;
-  right: -42px !important;
-  top: -38px !important;
-  opacity: .28 !important;
-  z-index: 0 !important;
-  transform: rotate(10deg) !important;
-}
-
-@media (max-width: 1100px) {
-  .dried-flower-decoration {
-    display: none !important;
-  }
 }
 
 /* Request artwork: compact editorial accent, not a second screen */
@@ -2141,7 +2092,7 @@ textarea:focus-visible {
   </section>
 
   <section class="section section-muted floral-section visual-section">
-    <img class="dried-flower-decoration" src="dried-flowers.png" alt="" aria-hidden="true">
+    <img class="" src="" alt="" aria-hidden="true">
     <div class="site-shell">
       <div class="section-head">
         <div>
@@ -2533,7 +2484,7 @@ textarea:focus-visible {
       <div class="request-layout">
         <aside class="request-sticker-panel" aria-label="Decorative commission journal">
           <img class="request-journal" src="anthem-journal.png" alt="Anthem's Journal, an antique brown journal used as a Mama Anthem brand graphic.">
-          <img class="request-flowers" src="dried-flowers.png" alt="" aria-hidden="true">
+          <img class="request-flowers" src="" alt="" aria-hidden="true">
           <div class="request-note">bring the oddly specific thing.</div>
         </aside>
 
