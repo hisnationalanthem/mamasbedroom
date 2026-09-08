@@ -19,6 +19,344 @@
   <meta name="twitter:card" content="summary_large_image">
 
   <style>
+/* =========================================================
+   MAMA ANTHEM — SITE TWEAKS
+   ---------------------------------------------------------
+   Put this file in the SAME folder as index.html and the
+   rest of the website files.
+
+   IMPORTANT:
+   Add this line near the end of the <head> on every page,
+   AFTER the existing <style> block:
+
+   <link rel="stylesheet" href="site-tweaks.css">
+
+   From then on, most layout fixes can be made here without
+   rebuilding the rest of the site.
+   ========================================================= */
+
+
+/* =========================================================
+   1. EASY CONTROLS
+   Change these values first.
+   ========================================================= */
+
+:root {
+  /* General spacing */
+  --tweak-section-spacing: 78px;
+
+  /* Homepage hero */
+  --tweak-home-hero-x: 50%;
+  --tweak-home-hero-y: 42%;
+
+  /* Cupcake + Bunny feature */
+  --tweak-editorial-heading-min: 2.2rem;
+  --tweak-editorial-heading-fluid: 3.7vw;
+  --tweak-editorial-heading-max: 3.9rem;
+
+  /* Journal banner */
+  --tweak-journal-banner-height: 132px;
+  --tweak-journal-size: 96px;
+  --tweak-journal-flower-size: 76px;
+  --tweak-journal-note-left: 195px;
+  --tweak-journal-note-width: 300px;
+
+  /* Decorative flower accent */
+  --tweak-flower-decoration-size: 105px;
+  --tweak-flower-decoration-opacity: 0.16;
+
+  /* Rounded corners */
+  --tweak-image-radius: 26px;
+
+  /* Focus outline */
+  --tweak-focus-color: rgba(169, 139, 97, 0.72);
+}
+
+
+/* =========================================================
+   2. GLOBAL SPACING
+   ========================================================= */
+
+.section {
+  padding-top: var(--tweak-section-spacing);
+  padding-bottom: var(--tweak-section-spacing);
+}
+
+
+/* =========================================================
+   3. HOMEPAGE HERO PHOTO
+   ---------------------------------------------------------
+   Move the photo without editing the actual image.
+   Change --tweak-home-hero-x and --tweak-home-hero-y above.
+   ========================================================= */
+
+.home-hero-photo {
+  background-position:
+    var(--tweak-home-hero-x)
+    var(--tweak-home-hero-y) !important;
+}
+
+
+/* =========================================================
+   4. CUPCAKE + BUNNY FEATURE
+   ---------------------------------------------------------
+   Prevent the heading from overflowing the dark panel.
+   ========================================================= */
+
+.editorial-copy {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.editorial-copy h2 {
+  font-size: clamp(
+    var(--tweak-editorial-heading-min),
+    var(--tweak-editorial-heading-fluid),
+    var(--tweak-editorial-heading-max)
+  ) !important;
+  line-height: 0.98 !important;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   5. DECORATIVE DRIED FLOWERS
+   ---------------------------------------------------------
+   Keep them subtle and away from readable content.
+   ========================================================= */
+
+.dried-flower-decoration {
+  width: var(--tweak-flower-decoration-size) !important;
+  opacity: var(--tweak-flower-decoration-opacity) !important;
+  right: 8px !important;
+  top: 8px !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+.visual-section > .site-shell {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 1100px) {
+  .dried-flower-decoration {
+    display: none !important;
+  }
+}
+
+
+/* =========================================================
+   6. REQUEST FORM JOURNAL BANNER
+   ========================================================= */
+
+.request-layout {
+  display: block !important;
+}
+
+.request-sticker-panel {
+  position: relative !important;
+  top: auto !important;
+  width: 100% !important;
+  max-width: 720px;
+  min-height: var(--tweak-journal-banner-height) !important;
+  height: var(--tweak-journal-banner-height) !important;
+  margin: 0 0 20px !important;
+  overflow: hidden !important;
+  display: block !important;
+
+  border: 1px solid rgba(89, 62, 46, 0.14);
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      rgba(248, 240, 228, 0.90),
+      rgba(248, 240, 228, 0.90)
+    ),
+    url("wallpaper.webp") center / cover no-repeat;
+}
+
+.request-journal {
+  position: absolute !important;
+  width: var(--tweak-journal-size) !important;
+  left: 16px !important;
+  top: 8px !important;
+  transform: rotate(-4deg) !important;
+}
+
+.request-flowers {
+  position: absolute !important;
+  width: var(--tweak-journal-flower-size) !important;
+  left: 96px !important;
+  right: auto !important;
+  bottom: -18px !important;
+  opacity: 0.42 !important;
+}
+
+.request-note {
+  position: absolute !important;
+  left: var(--tweak-journal-note-left) !important;
+  right: auto !important;
+  bottom: 31px !important;
+  width: var(--tweak-journal-note-width) !important;
+  max-width: calc(100% - var(--tweak-journal-note-left) - 24px);
+  padding: 10px 14px !important;
+
+  font-size: 0.9rem !important;
+  line-height: 1.3 !important;
+  transform: rotate(0deg) !important;
+}
+
+
+/* =========================================================
+   7. REQUEST ID BOX
+   ========================================================= */
+
+.request-id-box {
+  display: grid !important;
+  grid-template-columns: max-content minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 18px;
+  row-gap: 2px;
+  align-items: center;
+
+  padding: 13px 16px !important;
+  margin-bottom: 18px !important;
+}
+
+.request-id-box small {
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0 !important;
+}
+
+.request-id-box strong {
+  grid-column: 1;
+  grid-row: 2;
+  font-size: 1.1rem !important;
+}
+
+.request-id-box .request-id-help {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  margin: 0 !important;
+  font-size: 0.79rem;
+  color: rgba(248, 240, 228, 0.58);
+}
+
+
+/* =========================================================
+   8. BUTTON / FORM FOCUS
+   ========================================================= */
+
+.btn:focus-visible,
+.graveyard-filter:focus-visible,
+.mobile-toggle:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--tweak-focus-color) !important;
+  outline-offset: 3px !important;
+}
+
+
+/* =========================================================
+   9. IMAGE RADIUS
+   ========================================================= */
+
+.editorial-card,
+.page-hero-photo,
+.scenario-callout,
+.error-visual {
+  border-radius: var(--tweak-image-radius) !important;
+}
+
+
+/* =========================================================
+   10. MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  :root {
+    --tweak-section-spacing: 58px;
+    --tweak-journal-banner-height: 112px;
+    --tweak-journal-size: 82px;
+    --tweak-journal-flower-size: 62px;
+    --tweak-journal-note-left: 135px;
+    --tweak-journal-note-width: 190px;
+  }
+
+  .editorial-copy h2 {
+    font-size: clamp(2rem, 10vw, 3.1rem) !important;
+  }
+
+  .request-journal {
+    left: 10px !important;
+    top: 7px !important;
+  }
+
+  .request-flowers {
+    left: 72px !important;
+    bottom: -12px !important;
+  }
+
+  .request-note {
+    bottom: 24px !important;
+    padding: 8px 10px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .request-id-box {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  .request-id-box small,
+  .request-id-box strong,
+  .request-id-box .request-id-help {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .request-id-box .request-id-help {
+    margin-top: 5px !important;
+  }
+}
+
+
+/* =========================================================
+   11. OPTIONAL QUICK SWITCHES
+   ---------------------------------------------------------
+   Uncomment any block below if you want that behavior.
+   ========================================================= */
+
+/* Hide ALL dried-flower edge decorations:
+.dried-flower-decoration {
+  display: none !important;
+}
+*/
+
+/* Hide the entire journal decoration above the request form:
+.request-sticker-panel {
+  display: none !important;
+}
+*/
+
+/* Make the Cupcake + Bunny heading even smaller:
+.editorial-copy h2 {
+  font-size: clamp(2rem, 3vw, 3.3rem) !important;
+}
+*/
+
+/* Make the homepage hero photo show more of the top:
+.home-hero-photo {
+  background-position: center 32% !important;
+}
+*/
+
+    
 :root {
   --ink: #171310;
   --ink-soft: #2a211d;
