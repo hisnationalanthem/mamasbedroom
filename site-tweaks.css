@@ -1,0 +1,57 @@
+/* =========================================================
+   COMMISSION SUBMISSION SUCCESS
+   ========================================================= */
+
+.request-success {
+  padding: clamp(28px, 5vw, 54px);
+  text-align: left;
+}
+
+.request-success .eyebrow {
+  margin-bottom: 8px;
+}
+
+.request-success h3 {
+  margin: 8px 0 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1;
+  color: var(--cream);
+}
+
+.request-success p {
+  max-width: 680px;
+  color: rgba(248, 240, 228, 0.76);
+}
+
+.request-success-id {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+
+  margin: 12px 0 20px;
+  padding: 14px 18px;
+
+  background: rgba(111, 36, 52, 0.34);
+  border: 1px solid rgba(248, 240, 228, 0.16);
+  color: var(--cream);
+
+  border-radius: 14px;
+}
+
+.request-success-id small {
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.request-success-id strong {
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  overflow-wrap: anywhere;
+}
+
+.request-success .btn {
+  margin-top: 12px;
+}
