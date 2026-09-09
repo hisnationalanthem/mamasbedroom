@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#6f2434">
+  <title>Commission Admin — Mama Anthem</title>
+
+  <style>
+    :root {
+      --ink: #171310;
+      --ink-soft: #2a211d;
+      --paper: #efe5d2;
+      --paper-2: #e5d5bb;
+      --cream: #f8f0e4;
+      --wine: #6f2434;
+      --wine-deep: #3c151f;
+      --olive: #5d6148;
+      --gold: #a98b61;
+      --line: rgba(89, 62, 46, 0.28);
+      --shadow: 0 18px 50px rgba(18, 10, 8, .18);
+      --radius: 22px;
+      --display: Georgia, "Times New Roman", serif;
+      --body: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--body);
+      line-height: 1.55;
+      background:
+        radial-gradient(circle at 10% 5%, rgba(111, 36, 52, .10), transparent 30%),
+        radial-gradient(circle at 90% 15%, rgba(93, 97, 72, .08), transparent 28%),
+        linear-gradient(180deg, #f2e9da 0%, #e6d5bb 100%);
+    }
+
+    button, input, select, textarea { font: inherit; }
+
+    button { cursor: pointer; }
+
+    .site-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .admin-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+      background: rgba(239, 229, 210, .9);
+    }
+
+    .admin-nav {
+      min-height: 72px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      text-decoration: none;
+      color: inherit;
+      display: inline-flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .brand strong {
+      font-family: var(--display);
+      font-size: 1.25rem;
+      letter-spacing: .04em;
+    }
+
+    .brand span {
+      margin-top: 7px;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .22em;
+      opacity: .7;
+    }
+
+    .admin-main { padding: 58px 0 78px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--wine);
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 20px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    h1, h2, h3 {
+      font-family: var(--display);
+      line-height: 1.05;
+      margin-top: 0;
+    }
+
+    h1 {
+      margin: 14px 0 14px;
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      font-weight: 500;
+      letter-spacing: -.04em;
+    }
+
+    .lead {
+      max-width: 690px;
+      margin: 0;
+      color: #51443d;
+    }
+
+    .login-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(340px, .7fr);
+      gap: clamp(32px, 7vw, 88px);
+      align-items: center;
+      min-height: calc(100vh - 180px);
+    }
+
+    .login-card,
+    .panel,
+    .commission-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 28px rgba(49, 32, 24, .06);
+    }
+
+    .login-card {
+      padding: clamp(26px, 5vw, 42px);
+      color: var(--cream);
+      background:
+        radial-gradient(circle at 85% 15%, rgba(111,36,52,.25), transparent 34%),
+        linear-gradient(145deg, #251b18, #17110f);
+      box-shadow: var(--shadow);
+    }
+
+    .login-card h2 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+
+    .login-card p {
+      color: rgba(248,240,228,.68);
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    label {
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(248,240,228,.2);
+      border-radius: 12px;
+      outline: none;
+    }
+
+    .login-card input {
+      padding: 13px 14px;
+      color: var(--cream);
+      background: rgba(248,240,228,.08);
+    }
+
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    button:focus-visible {
+      outline: 3px solid rgba(169,139,97,.72);
+      outline-offset: 3px;
+    }
+
+    .btn {
+      min-height: 46px;
+      padding: 0 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 9px 22px rgba(29,17,12,.13);
+    }
+
+    .btn-primary {
+      color: var(--cream);
+      border-color: var(--wine);
+      background: var(--wine);
+    }
+
+    .btn-dark {
+      color: var(--cream);
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .btn-ghost {
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(255,255,255,.22);
+    }
+
+    .login-card .btn {
+      width: 100%;
+      margin-top: 22px;
+    }
+
+    .status-message {
+      min-height: 24px;
+      margin-top: 12px;
+      font-size: .86rem;
+    }
+
+    .login-card .status-message { color: #efc0c7; }
+
+    [hidden] { display: none !important; }
+
+    .dashboard-head {
+      display: flex;
+      gap: 24px;
+      align-items: end;
+      justify-content: space-between;
+      margin-bottom: 28px;
+    }
+
+    .dashboard-head h1 {
+      margin-bottom: 4px;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(248,240,228,.55);
+    }
+
+    .stat-card small {
+      display: block;
+      color: #6d5c52;
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .stat-card strong {
+      display: block;
+      margin-top: 6px;
+      color: var(--wine);
+      font: 500 2rem var(--display);
+    }
+
+    .panel {
+      padding: 18px;
+      background: rgba(248,240,228,.52);
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: minmax(0,1fr) 220px;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .filters input,
+    .filters select {
+      padding: 12px 13px;
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(255,255,255,.42);
+    }
+
+    .commission-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .commission-card {
+      padding: 18px;
+      background: rgba(255,255,255,.26);
+    }
+
+    .commission-card summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .commission-card summary::-webkit-details-marker { display: none; }
+
+    .commission-summary {
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr) minmax(180px,.8fr) auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .commission-title strong {
+      display: block;
+      font: 500 1.35rem var(--display);
+    }
+
+    .commission-title small,
+    .commission-meta {
+      color: #6d5c52;
+      font-size: .82rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(111,36,52,.10);
+      color: var(--wine);
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .commission-body {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 14px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 14px;
+    }
+
+    .detail {
+      padding: 14px;
+      border-radius: 14px;
+      background: rgba(248,240,228,.58);
+    }
+
+    .detail.full { grid-column: 1 / -1; }
+
+    .detail small {
+      display: block;
+      margin-bottom: 5px;
+      color: #725f55;
+      font-size: .7rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .detail p {
+      margin: 0;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .empty-state {
+      padding: 34px;
+      text-align: center;
+      color: #6d5c52;
+    }
+
+    .loading {
+      padding: 26px;
+      text-align: center;
+      color: #6d5c52;
+    }
+
+    .site-setting {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 0 15px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.24);
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .site-setting::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #8b7a70;
+    }
+
+    .site-setting.is-open::before { background: #6f7b4d; }
+    .site-setting.is-closed::before { background: var(--wine); }
+
+    .edit-panel {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,.22);
+    }
+
+    .edit-panel h3 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+    }
+
+    .edit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 12px;
+    }
+
+    .edit-field {
+      display: grid;
+      gap: 7px;
+    }
+
+    .edit-field.full { grid-column: 1 / -1; }
+
+    .edit-field label {
+      color: #725f55;
+      font-size: .7rem;
+    }
+
+    .edit-field input,
+    .edit-field select,
+    .edit-field textarea {
+      padding: 11px 12px;
+      color: var(--ink);
+      border-color: var(--line);
+      background: rgba(248,240,228,.72);
+    }
+
+    .edit-field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .edit-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-top: 14px;
+    }
+
+    .save-status {
+      min-height: 22px;
+      color: #69564e;
+      font-size: .84rem;
+    }
+
+    .milestone-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 8px;
+    }
+
+    .milestone {
+      padding: 11px;
+      border-radius: 12px;
+      background: rgba(248,240,228,.45);
+    }
+
+    .milestone small {
+      display: block;
+      color: #725f55;
+      font-size: .66rem;
+      font-weight: 900;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .milestone span {
+      display: block;
+      margin-top: 3px;
+      font-size: .78rem;
+    }
+
+    @media (max-width: 900px) {
+      .login-wrap,
+      .stats,
+      .filters,
+      .commission-summary,
+      .detail-grid,
+      .edit-grid,
+      .milestone-list {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .site-shell { width: min(100% - 22px, 1180px); }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .panel { padding: 12px; }
+      .commission-card { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="admin-header">
+  <div class="site-shell admin-nav">
+    <a class="brand" href="index.html">
+      <strong>mama anthem</strong>
+      <span>commission admin</span>
+    </a>
+
+    <button class="btn btn-ghost" type="button" data-logout hidden>
+      Log out
+    </button>
+  </div>
+</header>
+
+<main class="admin-main">
+
+  <section class="site-shell" data-login-view>
+    <div class="login-wrap">
+      <div>
+        <span class="eyebrow">Private dashboard</span>
+        <h1>the back room.</h1>
+        <p class="lead">
+          Sign in with the Supabase admin account you created. Commission data is
+          protected by Row Level Security and is only returned to approved admin users.
+        </p>
+      </div>
+
+      <form class="login-card" data-login-form>
+        <h2>Admin sign in</h2>
+        <p>This is your private commission tracker.</p>
+
+        <div class="field">
+          <label for="admin-email">Email</label>
+          <input id="admin-email" name="email" type="email" autocomplete="username" required>
+        </div>
+
+        <div class="field">
+          <label for="admin-password">Password</label>
+          <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+        </div>
+
+        <button class="btn btn-primary" type="submit">
+          Sign in
+        </button>
+
+        <div class="status-message" data-login-status aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="site-shell" data-dashboard-view hidden>
+    <div class="dashboard-head">
+      <div>
+        <span class="eyebrow">Commission tracker</span>
+        <h1>the queue.</h1>
+        <p class="lead">
+          Review submissions, update commission status and payment details,
+          keep private notes, and close completed work.
+        </p>
+      </div>
+
+      <div class="toolbar">
+        <button class="site-setting" type="button" data-commissions-toggle>
+          Checking commissions…
+        </button>
+
+        <button class="btn btn-dark" type="button" data-refresh>
+          Refresh
+        </button>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <small>Total</small>
+        <strong data-stat-total>0</strong>
+      </div>
+      <div class="stat-card">
+        <small>New</small>
+        <strong data-stat-new>0</strong>
+      </div>
+      <div class="stat-card">
+        <small>In progress</small>
+        <strong data-stat-progress>0</strong>
+      </div>
+      <div class="stat-card">
+        <small>Complete</small>
+        <strong data-stat-complete>0</strong>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="filters">
+        <input
+          type="search"
+          placeholder="Search request ID, client, contact, type…"
+          data-search
+        >
+
+        <select data-status-filter>
+          <option value="">All statuses</option>
+          <option>New</option>
+          <option>Needs Discussion</option>
+          <option>Approved — Awaiting Payment</option>
+          <option>Paid — Queued</option>
+          <option>In Progress</option>
+          <option>Waiting on Client</option>
+          <option>Complete</option>
+          <option>Declined</option>
+          <option>Cancelled</option>
+        </select>
+      </div>
+
+      <div class="loading" data-loading>
+        Loading commissions…
+      </div>
+
+      <div class="commission-list" data-commission-list hidden></div>
+
+      <div class="empty-state" data-empty hidden>
+        No commissions match this view.
+      </div>
+
+      <div class="status-message" data-dashboard-status aria-live="polite"></div>
+    </div>
+  </section>
+
+</main>
+
+<script type="module" src="admin.js?v=3"></script>
+</body>
+</html>
