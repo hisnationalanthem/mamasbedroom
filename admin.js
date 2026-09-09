@@ -2,7 +2,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import {
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
-} from "./supabase-config.js?v=5";
+} from "./supabase-config.js?v=6";
 
 const supabase = createClient(
   SUPABASE_URL,
@@ -45,6 +45,7 @@ const PRIORITY_STATUSES = [
 const DONATION_STATUSES = [
   "Awaiting Donation",
   "Received",
+  "Partially Refunded",
   "Refunded"
 ];
 
@@ -852,6 +853,29 @@ function renderPriorityRequests() {
             <p>${escapeHtml(item.donation_status || "—")}</p>
           </div>
 
+          <div class="detail">
+            <small>Stripe verification</small>
+            <p>${escapeHtml(item.stripe_payment_status || "—")}</p>
+          </div>
+
+          <div class="detail">
+            <small>Refunded</small>
+            <p>${
+              item.refunded_amount_cad == null
+                ? "—"
+                : `$${escapeHtml(Number(item.refunded_amount_cad).toFixed(2))} CAD`
+            }</p>
+          </div>
+
+          <div class="detail full">
+            <small>Stripe references</small>
+            <p>${
+              item.stripe_checkout_session_id || item.stripe_payment_intent_id
+                ? `${escapeHtml(item.stripe_checkout_session_id || "—")}\n${escapeHtml(item.stripe_payment_intent_id || "—")}`
+                : "—"
+            }</p>
+          </div>
+
           <div class="detail full">
             <small>Bot to prioritize</small>
             <p>${escapeHtml(item.bot_identifier)}</p>
@@ -948,7 +972,7 @@ function renderPriorityRequests() {
               type="button"
               data-mark-donation-received
             >
-              Mark donation received
+              Mark received manually
             </button>
 
             <button

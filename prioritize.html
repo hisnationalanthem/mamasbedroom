@@ -548,8 +548,8 @@
         </h2>
         <p style="color:#554740;">
           Give me enough information to recognize the bot, then choose whatever amount you want
-          to contribute toward prioritizing it. This form records the request and amount;
-          it does not charge you automatically.
+          to contribute toward prioritizing it. Stripe contributions open a secure Stripe Checkout automatically after submission.
+          PayPal contributions are still confirmed manually.
         </p>
       </div>
 
@@ -618,9 +618,9 @@
                 id="donation_amount_cad"
                 name="donation_amount_cad"
                 type="number"
-                min="0.01"
+                min="0.50"
                 step="0.01"
-                placeholder="Whatever amount you want"
+                placeholder="0.50 or more"
                 required
               >
             </div>
@@ -690,8 +690,8 @@
           ></div>
 
           <p class="scope-note">
-            This form does not charge you. The contribution is only counted after Anthem verifies it.
-            A larger amount may carry more priority weight, but no amount guarantees an exact position or posting date.
+            Stripe contributions are marked received automatically after Stripe confirms payment through a signed webhook.
+            PayPal remains manually verified. A larger amount may carry more priority weight, but no amount guarantees an exact position or posting date.
           </p>
         </form>
       </div>
