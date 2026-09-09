@@ -558,6 +558,10 @@
       margin-bottom: 20px;
     }
 
+    [data-dashboard-panel="priority"] .filters {
+      grid-template-columns: minmax(0,1fr) 190px 190px;
+    }
+
     .priority-list {
       display: grid;
       gap: 12px;
@@ -608,7 +612,8 @@
 
     @media (max-width: 900px) {
       .priority-stats,
-      .priority-summary {
+      .priority-summary,
+      [data-dashboard-panel="priority"] .filters {
         grid-template-columns: 1fr;
       }
     }
@@ -784,12 +789,12 @@
           <strong data-priority-stat-total>0</strong>
         </div>
         <div class="stat-card">
-          <small>Pending</small>
-          <strong data-priority-stat-pending>0</strong>
+          <small>Awaiting donation</small>
+          <strong data-priority-stat-awaiting>0</strong>
         </div>
         <div class="stat-card">
-          <small>Accepted</small>
-          <strong data-priority-stat-accepted>0</strong>
+          <small>Donation received</small>
+          <strong data-priority-stat-received>0</strong>
         </div>
         <div class="stat-card">
           <small>Applied</small>
@@ -813,6 +818,12 @@
             <option>Declined</option>
             <option>Cancelled</option>
           </select>
+
+          <select data-priority-sort>
+            <option value="newest">Newest first</option>
+            <option value="highest">Highest donation</option>
+            <option value="lowest">Lowest donation</option>
+          </select>
         </div>
 
         <div class="loading" data-priority-loading>
@@ -832,6 +843,6 @@
 
 </main>
 
-<script type="module" src="admin.js?v=4"></script>
+<script type="module" src="admin.js?v=5"></script>
 </body>
 </html>

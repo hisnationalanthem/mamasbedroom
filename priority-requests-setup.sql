@@ -1,6 +1,7 @@
--- Mama Anthem: Upcoming Bot Priority Requests
+-- Mama Anthem: Donation-Based Upcoming Bot Priority Requests
 -- Run this once in Supabase SQL Editor.
--- Assumes your existing private.is_admin() helper and public.set_updated_at() function already exist.
+-- Safe to run whether or not the earlier priority-request table already exists.
+-- Assumes your existing private.is_admin() helper and public.set_updated_at() function exist.
 
 create table if not exists public.bot_priority_requests (
   id uuid primary key default gen_random_uuid(),
@@ -15,12 +16,40 @@ create table if not exists public.bot_priority_requests (
   source_reference text,
   note text,
 
+  donation_amount_cad numeric(10,2),
+  donation_method text,
+  donation_status text not null default 'Awaiting Donation',
+
   status text not null default 'Pending',
   internal_notes text,
 
+  donation_received_at timestamptz,
+  refunded_at timestamptz,
   accepted_at timestamptz,
   applied_at timestamptz
 );
+
+-- Migration support if the earlier non-donation version was already created.
+alter table public.bot_priority_requests
+  add column if not exists donation_amount_cad numeric(10,2);
+
+alter table public.bot_priority_requests
+  add column if not exists donation_method text;
+
+alter table public.bot_priority_requests
+  add column if not exists donation_status text not null default 'Awaiting Donation';
+
+alter table public.bot_priority_requests
+  add column if not exists donation_received_at timestamptz;
+
+alter table public.bot_priority_requests
+  add column if not exists refunded_at timestamptz;
+
+alter table public.bot_priority_requests
+  add column if not exists accepted_at timestamptz;
+
+alter table public.bot_priority_requests
+  add column if not exists applied_at timestamptz;
 
 alter table public.bot_priority_requests
 drop constraint if exists bot_priority_requests_status_check;
@@ -35,6 +64,39 @@ check (status in (
   'Cancelled'
 ));
 
+alter table public.bot_priority_requests
+drop constraint if exists bot_priority_requests_donation_amount_check;
+
+alter table public.bot_priority_requests
+add constraint bot_priority_requests_donation_amount_check
+check (
+  donation_amount_cad is null
+  or donation_amount_cad > 0
+);
+
+alter table public.bot_priority_requests
+drop constraint if exists bot_priority_requests_donation_method_check;
+
+alter table public.bot_priority_requests
+add constraint bot_priority_requests_donation_method_check
+check (
+  donation_method is null
+  or donation_method in ('Stripe', 'PayPal')
+);
+
+alter table public.bot_priority_requests
+drop constraint if exists bot_priority_requests_donation_status_check;
+
+alter table public.bot_priority_requests
+add constraint bot_priority_requests_donation_status_check
+check (
+  donation_status in (
+    'Awaiting Donation',
+    'Received',
+    'Refunded'
+  )
+);
+
 drop trigger if exists bot_priority_requests_set_updated_at
 on public.bot_priority_requests;
 
@@ -48,6 +110,18 @@ returns trigger
 language plpgsql
 as $$
 begin
+  if new.donation_status = 'Received'
+     and old.donation_status is distinct from new.donation_status
+     and new.donation_received_at is null then
+    new.donation_received_at = now();
+  end if;
+
+  if new.donation_status = 'Refunded'
+     and old.donation_status is distinct from new.donation_status
+     and new.refunded_at is null then
+    new.refunded_at = now();
+  end if;
+
   if new.status = 'Accepted'
      and old.status is distinct from new.status
      and new.accepted_at is null then

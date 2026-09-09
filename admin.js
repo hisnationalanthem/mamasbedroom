@@ -2,7 +2,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 import {
   SUPABASE_URL,
   SUPABASE_PUBLISHABLE_KEY
-} from "./supabase-config.js?v=4";
+} from "./supabase-config.js?v=5";
 
 const supabase = createClient(
   SUPABASE_URL,
@@ -42,6 +42,17 @@ const PRIORITY_STATUSES = [
   "Cancelled"
 ];
 
+const DONATION_STATUSES = [
+  "Awaiting Donation",
+  "Received",
+  "Refunded"
+];
+
+const DONATION_METHODS = [
+  "Stripe",
+  "PayPal"
+];
+
 const loginView = document.querySelector("[data-login-view]");
 const dashboardView = document.querySelector("[data-dashboard-view]");
 const loginForm = document.querySelector("[data-login-form]");
@@ -67,10 +78,11 @@ const priorityLoading = document.querySelector("[data-priority-loading]");
 const priorityEmpty = document.querySelector("[data-priority-empty]");
 const prioritySearch = document.querySelector("[data-priority-search]");
 const priorityStatusFilter = document.querySelector("[data-priority-status-filter]");
+const prioritySort = document.querySelector("[data-priority-sort]");
 
 const priorityStatTotal = document.querySelector("[data-priority-stat-total]");
-const priorityStatPending = document.querySelector("[data-priority-stat-pending]");
-const priorityStatAccepted = document.querySelector("[data-priority-stat-accepted]");
+const priorityStatAwaiting = document.querySelector("[data-priority-stat-awaiting]");
+const priorityStatReceived = document.querySelector("[data-priority-stat-received]");
 const priorityStatApplied = document.querySelector("[data-priority-stat-applied]");
 
 let commissions = [];
@@ -163,16 +175,22 @@ function updatePriorityStats() {
   priorityStatTotal.textContent =
     String(priorityRequests.length);
 
-  priorityStatPending.textContent = String(
-    priorityRequests.filter(item => item.status === "Pending").length
+  priorityStatAwaiting.textContent = String(
+    priorityRequests.filter(
+      item => item.donation_status === "Awaiting Donation"
+    ).length
   );
 
-  priorityStatAccepted.textContent = String(
-    priorityRequests.filter(item => item.status === "Accepted").length
+  priorityStatReceived.textContent = String(
+    priorityRequests.filter(
+      item => item.donation_status === "Received"
+    ).length
   );
 
   priorityStatApplied.textContent = String(
-    priorityRequests.filter(item => item.status === "Applied").length
+    priorityRequests.filter(
+      item => item.status === "Applied"
+    ).length
   );
 }
 
@@ -622,7 +640,10 @@ function getFilteredPriorityRequests() {
   const selectedStatus =
     priorityStatusFilter.value;
 
-  return priorityRequests.filter(item => {
+  const sortMode =
+    prioritySort.value;
+
+  const filtered = priorityRequests.filter(item => {
     if (
       selectedStatus &&
       item.status !== selectedStatus
@@ -639,13 +660,31 @@ function getFilteredPriorityRequests() {
       item.bot_identifier,
       item.source_reference,
       item.note,
-      item.internal_notes
+      item.internal_notes,
+      item.donation_method,
+      item.donation_status,
+      item.donation_amount_cad
     ]
-      .filter(Boolean)
+      .filter(value => value !== null && value !== undefined)
       .join(" ")
       .toLowerCase();
 
     return haystack.includes(query);
+  });
+
+  return filtered.sort((a, b) => {
+    if (sortMode === "highest") {
+      return Number(b.donation_amount_cad || 0) -
+        Number(a.donation_amount_cad || 0);
+    }
+
+    if (sortMode === "lowest") {
+      return Number(a.donation_amount_cad || 0) -
+        Number(b.donation_amount_cad || 0);
+    }
+
+    return new Date(b.submitted_at) -
+      new Date(a.submitted_at);
   });
 }
 
@@ -657,10 +696,46 @@ async function savePriorityRequest(
   const formData =
     new FormData(form);
 
+  const donationRaw =
+    String(
+      formData.get("donation_amount_cad") || ""
+    ).trim();
+
+  const donationAmount =
+    Number(donationRaw);
+
+  if (
+    !Number.isFinite(donationAmount) ||
+    donationAmount <= 0
+  ) {
+    statusBox.textContent =
+      "Enter a valid donation amount.";
+    return null;
+  }
+
+  const donationMethod =
+    String(
+      formData.get("donation_method") || ""
+    ).trim();
+
+  if (
+    !DONATION_METHODS.includes(donationMethod)
+  ) {
+    statusBox.textContent =
+      "Choose Stripe or PayPal.";
+    return null;
+  }
+
   const updates = {
     status: String(
       formData.get("status") ||
       item.status
+    ),
+    donation_amount_cad: donationAmount,
+    donation_method: donationMethod,
+    donation_status: String(
+      formData.get("donation_status") ||
+      item.donation_status
     ),
     internal_notes:
       String(
@@ -731,6 +806,11 @@ function renderPriorityRequests() {
 
     card.className = "priority-card";
 
+    const amount =
+      item.donation_amount_cad == null
+        ? "—"
+        : `$${Number(item.donation_amount_cad).toFixed(2)} CAD`;
+
     card.innerHTML = `
       <summary>
         <div class="priority-summary">
@@ -742,7 +822,8 @@ function renderPriorityRequests() {
           <div class="priority-meta">
             ${escapeHtml(item.client_name)}
             <br>
-            ${escapeHtml(formatDate(item.submitted_at))}
+            ${escapeHtml(amount)}
+            ${item.donation_method ? ` · ${escapeHtml(item.donation_method)}` : ""}
           </div>
 
           <span class="pill">${escapeHtml(item.status)}</span>
@@ -759,6 +840,16 @@ function renderPriorityRequests() {
           <div class="detail">
             <small>Contact</small>
             <p>${escapeHtml(item.contact)}</p>
+          </div>
+
+          <div class="detail">
+            <small>Donation</small>
+            <p>${escapeHtml(amount)}${item.donation_method ? ` · ${escapeHtml(item.donation_method)}` : ""}</p>
+          </div>
+
+          <div class="detail">
+            <small>Donation status</small>
+            <p>${escapeHtml(item.donation_status || "—")}</p>
           </div>
 
           <div class="detail full">
@@ -782,17 +873,20 @@ function renderPriorityRequests() {
             <small>Submitted</small>
             <span>${escapeHtml(formatDate(item.submitted_at))}</span>
           </div>
+
+          <div class="milestone">
+            <small>Donation received</small>
+            <span>${escapeHtml(formatDate(item.donation_received_at))}</span>
+          </div>
+
           <div class="milestone">
             <small>Accepted</small>
             <span>${escapeHtml(formatDate(item.accepted_at))}</span>
           </div>
+
           <div class="milestone">
             <small>Applied</small>
             <span>${escapeHtml(formatDate(item.applied_at))}</span>
-          </div>
-          <div class="milestone">
-            <small>Updated</small>
-            <span>${escapeHtml(formatDate(item.updated_at))}</span>
           </div>
         </div>
 
@@ -801,9 +895,34 @@ function renderPriorityRequests() {
 
           <div class="edit-grid">
             <div class="edit-field">
-              <label>Status</label>
+              <label>Priority status</label>
               <select name="status">
                 ${optionHtml(PRIORITY_STATUSES, item.status)}
+              </select>
+            </div>
+
+            <div class="edit-field">
+              <label>Donation status</label>
+              <select name="donation_status">
+                ${optionHtml(DONATION_STATUSES, item.donation_status || "Awaiting Donation")}
+              </select>
+            </div>
+
+            <div class="edit-field">
+              <label>Donation amount — CAD</label>
+              <input
+                name="donation_amount_cad"
+                type="number"
+                min="0.01"
+                step="0.01"
+                value="${item.donation_amount_cad == null ? "" : escapeHtml(item.donation_amount_cad)}"
+              >
+            </div>
+
+            <div class="edit-field">
+              <label>Donation method</label>
+              <select name="donation_method">
+                ${optionHtml(DONATION_METHODS, item.donation_method || "Stripe")}
               </select>
             </div>
 
@@ -822,6 +941,14 @@ function renderPriorityRequests() {
               type="submit"
             >
               Save changes
+            </button>
+
+            <button
+              class="btn btn-dark"
+              type="button"
+              data-mark-donation-received
+            >
+              Mark donation received
             </button>
 
             <button
@@ -852,6 +979,11 @@ function renderPriorityRequests() {
         "[data-priority-save-status]"
       );
 
+    const markDonationReceived =
+      card.querySelector(
+        "[data-mark-donation-received]"
+      );
+
     const markApplied =
       card.querySelector(
         "[data-mark-applied]"
@@ -872,6 +1004,26 @@ function renderPriorityRequests() {
         if (saved) {
           dashboardStatus.textContent =
             `${item.request_id} saved.`;
+        }
+      }
+    );
+
+    markDonationReceived.addEventListener(
+      "click",
+      async () => {
+        form.elements.donation_status.value =
+          "Received";
+
+        const saved =
+          await savePriorityRequest(
+            item,
+            form,
+            saveStatus
+          );
+
+        if (saved) {
+          dashboardStatus.textContent =
+            `${item.request_id} donation marked received.`;
         }
       }
     );
@@ -1075,6 +1227,11 @@ prioritySearch.addEventListener(
 );
 
 priorityStatusFilter.addEventListener(
+  "change",
+  renderPriorityRequests
+);
+
+prioritySort.addEventListener(
   "change",
   renderPriorityRequests
 );

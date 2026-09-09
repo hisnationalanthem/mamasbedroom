@@ -5,8 +5,11 @@ const SUBMIT_PRIORITY_URL =
   const form = document.querySelector("#priority-form");
   if (!form) return;
 
-  const submitButton = form.querySelector("[data-submit-priority]");
-  const statusBox = document.querySelector("[data-priority-status]");
+  const submitButton =
+    form.querySelector("[data-submit-priority]");
+
+  const statusBox =
+    document.querySelector("[data-priority-status]");
 
   function setStatus(message, type = "") {
     if (!statusBox) return;
@@ -28,19 +31,41 @@ const SUBMIT_PRIORITY_URL =
 
     const data = new FormData(form);
 
+    const donationAmount =
+      Number(data.get("donation_amount_cad"));
+
     const payload = {
-      client_name: String(data.get("name") || "").trim(),
-      contact: String(data.get("contact") || "").trim(),
-      bot_identifier: String(
-        data.get("bot_identifier") || ""
-      ).trim(),
-      source_reference: String(
-        data.get("source_reference") || ""
-      ).trim(),
-      note: String(data.get("note") || "").trim(),
-      website_url: String(
-        data.get("website_url") || ""
-      ).trim(),
+      client_name:
+        String(data.get("name") || "").trim(),
+
+      contact:
+        String(data.get("contact") || "").trim(),
+
+      bot_identifier:
+        String(
+          data.get("bot_identifier") || ""
+        ).trim(),
+
+      source_reference:
+        String(
+          data.get("source_reference") || ""
+        ).trim(),
+
+      note:
+        String(data.get("note") || "").trim(),
+
+      donation_amount_cad:
+        donationAmount,
+
+      donation_method:
+        String(
+          data.get("donation_method") || ""
+        ).trim(),
+
+      website_url:
+        String(
+          data.get("website_url") || ""
+        ).trim(),
     };
 
     if (!payload.client_name) {
@@ -62,6 +87,28 @@ const SUBMIT_PRIORITY_URL =
     if (!payload.bot_identifier) {
       setStatus(
         "Tell Anthem which upcoming bot you want prioritized.",
+        "error"
+      );
+      return;
+    }
+
+    if (
+      !Number.isFinite(payload.donation_amount_cad) ||
+      payload.donation_amount_cad <= 0
+    ) {
+      setStatus(
+        "Enter the amount you want to donate in CAD.",
+        "error"
+      );
+      return;
+    }
+
+    if (
+      !["Stripe", "PayPal"]
+        .includes(payload.donation_method)
+    ) {
+      setStatus(
+        "Choose Stripe or PayPal for the donation.",
         "error"
       );
       return;
@@ -106,13 +153,20 @@ const SUBMIT_PRIORITY_URL =
         );
       }
 
-      if (!result.success || !result.request_id) {
+      if (
+        !result.success ||
+        !result.request_id
+      ) {
         throw new Error(
           "The request was not confirmed."
         );
       }
 
-      showSuccess(result.request_id);
+      showSuccess(
+        result.request_id,
+        payload.donation_amount_cad,
+        payload.donation_method
+      );
     } catch (error) {
       console.error(error);
 
@@ -130,7 +184,11 @@ const SUBMIT_PRIORITY_URL =
     }
   });
 
-  function showSuccess(requestId) {
+  function showSuccess(
+    requestId,
+    donationAmount,
+    donationMethod
+  ) {
     sessionStorage.setItem(
       "anthemLastPriorityRequestId",
       requestId
@@ -141,6 +199,12 @@ const SUBMIT_PRIORITY_URL =
     const formContainer =
       form.closest(".form-card") ||
       form.parentElement;
+
+    const amountLabel =
+      new Intl.NumberFormat(undefined, {
+        style: "currency",
+        currency: "CAD",
+      }).format(donationAmount);
 
     formContainer.innerHTML = `
       <div class="request-success">
@@ -153,11 +217,25 @@ const SUBMIT_PRIORITY_URL =
         </div>
 
         <p>
-          Keep this ID. This request tells Anthem which
-          original upcoming bot you want moved higher in
-          the posting queue. It does not turn the bot into
-          a commission and does not guarantee a specific
-          posting date.
+          You chose to support this priority request with
+          <strong>${escapeHtml(amountLabel)}</strong>
+          through
+          <strong>${escapeHtml(donationMethod)}</strong>.
+        </p>
+
+        <p>
+          This form has <strong>not charged you</strong>.
+          Keep the request ID. Anthem will confirm the
+          donation/payment route separately, and the
+          request remains <strong>Awaiting Donation</strong>
+          until the contribution is verified.
+        </p>
+
+        <p>
+          Once verified, the amount can influence how
+          strongly this bot is prioritized. It still does
+          not buy a specific queue position, exact posting
+          date, or creative control over the bot.
         </p>
 
         <button
@@ -165,7 +243,7 @@ const SUBMIT_PRIORITY_URL =
           type="button"
           data-open-priority-chat
         >
-          Discuss this request in chat
+          Open chat for donation details
         </button>
       </div>
     `;

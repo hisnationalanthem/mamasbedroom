@@ -1,7 +1,8 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
-const SUPABASE_SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+const SUPABASE_SERVICE_ROLE_KEY =
+  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 
 const supabaseAdmin = createClient(
   SUPABASE_URL,
@@ -79,7 +80,7 @@ Deno.serve(async (req) => {
   try {
     const body = await req.json();
 
-    // Honeypot: real visitors never fill this field.
+    // Honeypot: real visitors never fill this.
     const websiteUrl = cleanText(body.website_url, 500);
     if (websiteUrl) {
       return jsonResponse({ success: true }, 200, origin);
@@ -90,6 +91,9 @@ Deno.serve(async (req) => {
     const botIdentifier = cleanText(body.bot_identifier, 1500);
     const sourceReference = cleanText(body.source_reference, 3000);
     const note = cleanText(body.note, 6000);
+    const donationMethod = cleanText(body.donation_method, 50);
+
+    const donationAmount = Number(body.donation_amount_cad);
 
     if (!clientName) {
       return jsonResponse(
@@ -109,7 +113,36 @@ Deno.serve(async (req) => {
 
     if (!botIdentifier) {
       return jsonResponse(
-        { success: false, error: "Tell Anthem which upcoming bot you mean." },
+        {
+          success: false,
+          error: "Tell Anthem which upcoming bot you mean.",
+        },
+        400,
+        origin
+      );
+    }
+
+    if (
+      !Number.isFinite(donationAmount) ||
+      donationAmount <= 0 ||
+      donationAmount > 99999999.99
+    ) {
+      return jsonResponse(
+        {
+          success: false,
+          error: "Enter a valid donation amount in CAD.",
+        },
+        400,
+        origin
+      );
+    }
+
+    if (!["Stripe", "PayPal"].includes(donationMethod)) {
+      return jsonResponse(
+        {
+          success: false,
+          error: "Choose Stripe or PayPal for the donation.",
+        },
         400,
         origin
       );
@@ -126,6 +159,9 @@ Deno.serve(async (req) => {
         bot_identifier: botIdentifier,
         source_reference: sourceReference || null,
         note: note || null,
+        donation_amount_cad: donationAmount,
+        donation_method: donationMethod,
+        donation_status: "Awaiting Donation",
         status: "Pending",
       });
 
@@ -146,6 +182,8 @@ Deno.serve(async (req) => {
       {
         success: true,
         request_id: requestId,
+        donation_amount_cad: donationAmount,
+        donation_method: donationMethod,
       },
       201,
       origin

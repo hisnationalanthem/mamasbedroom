@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Prioritize an upcoming original Mama Anthem bot.">
+  <meta name="description" content="Support and prioritize an upcoming original Mama Anthem bot with a pay-what-you-want contribution.">
   <title>Prioritize an Upcoming Bot — Mama Anthem</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="icon" type="image/png" href="favicon.png">
@@ -480,10 +480,11 @@
 <main>
   <section class="page-hero">
     <div class="site-shell">
-      <span class="eyebrow">Original bot queue</span>
-      <h1>move one<br><em>up the pile.</em></h1>
+      <span class="eyebrow">Pay what you want</span>
+      <h1>tip the<br><em>scale.</em></h1>
       <p class="hero-copy">
-        If there is an original upcoming bot of mine that you want sooner, send a priority request.
+        If there is an original upcoming bot of mine that you want sooner, you can support it with
+        whatever amount you want and ask me to move it higher in my personal posting queue.
         You do not need an official upcoming list: identify the bot by its working title, premise,
         character, teaser, screenshot, or wherever you saw me mention it.
       </p>
@@ -493,34 +494,35 @@
   <section class="section section-muted">
     <div class="site-shell grid-2">
       <article class="card">
-        <span class="card-kicker">What this does</span>
-        <h3>It affects my posting order.</h3>
+        <span class="card-kicker">Donation-based priority</span>
+        <h3>Support whichever bot you want sooner.</h3>
         <p>
-          A priority request tells me which of my already-planned original bots you most want to see.
-          If I accept it, I can move that bot higher in my personal production/posting queue.
+          Choose any positive amount in CAD. Once the contribution is received and verified,
+          I can use it as priority weight when deciding which of my already-planned original bots
+          moves up next.
         </p>
 
         <ul class="list-clean">
+          <li>There is no fixed priority price</li>
+          <li>Larger contributions may carry more priority weight</li>
           <li>Any upcoming original Mama Anthem bot can be named</li>
-          <li>You can identify it even if it only has a working title or teaser</li>
-          <li>I can accept, decline, or apply the priority request</li>
           <li>You receive a priority request ID after submission</li>
         </ul>
       </article>
 
       <article class="card">
-        <span class="card-kicker">What this does not do</span>
-        <h3>It is not a commission.</h3>
+        <span class="card-kicker">Still my original project</span>
+        <h3>It is not a commission or an auction.</h3>
         <p>
-          The bot remains my original project. Prioritization does not buy control over the concept
-          and does not convert the bot into custom work.
+          The contribution influences priority only. It does not buy a numbered queue position,
+          guarantee that the bot will be next, or give control over the concept.
         </p>
 
         <ul class="list-clean">
           <li>No custom scenarios or premise changes</li>
           <li>No POV, character, relationship, or kink changes</li>
           <li>No ownership, exclusivity, or private access</li>
-          <li>No guaranteed exact posting date</li>
+          <li>No guaranteed exact posting order or date</li>
         </ul>
       </article>
     </div>
@@ -529,7 +531,8 @@
   <section class="section">
     <div class="site-shell">
       <div class="notice">
-        <strong>Priority request ≠ paid commission.</strong>
+        <strong>Priority support ≠ a commission.</strong>
+        This is creator support tied to queue priority, not a charitable or tax-deductible donation.
         If you want a bot built around your own concept or want changes made for you,
         use the normal commission form instead.
       </div>
@@ -544,8 +547,9 @@
           which one do you want sooner?
         </h2>
         <p style="color:#554740;">
-          Give me enough information to recognize the bot. A working title, premise,
-          character description, teaser, post link, or screenshot description is enough.
+          Give me enough information to recognize the bot, then choose whatever amount you want
+          to contribute toward prioritizing it. This form records the request and amount;
+          it does not charge you automatically.
         </p>
       </div>
 
@@ -607,6 +611,34 @@
               ></textarea>
             </div>
 
+
+            <div class="field">
+              <label for="donation_amount_cad">Donation amount — CAD</label>
+              <input
+                id="donation_amount_cad"
+                name="donation_amount_cad"
+                type="number"
+                min="0.01"
+                step="0.01"
+                placeholder="Whatever amount you want"
+                required
+              >
+            </div>
+
+            <div class="field">
+              <label for="donation_method">Preferred payment method</label>
+              <select
+                id="donation_method"
+                name="donation_method"
+                required
+                style="width:100%;border:1px solid rgba(248,240,228,.2);background:rgba(248,240,228,.08);color:var(--cream);border-radius:12px;padding:13px 14px;font:inherit;"
+              >
+                <option value="" style="color:var(--ink);background:var(--cream);">Choose one</option>
+                <option value="Stripe" style="color:var(--ink);background:var(--cream);">Stripe</option>
+                <option value="PayPal" style="color:var(--ink);background:var(--cream);">PayPal</option>
+              </select>
+            </div>
+
             <div class="field field-full">
               <label for="note">Optional note</label>
               <textarea
@@ -626,8 +658,9 @@
                   style="width:auto;margin-top:5px;"
                   required
                 >
-                I understand that prioritization only affects Anthem's posting queue.
-                It does not make the bot a commission or give me creative control over it.
+                I understand that my contribution only influences priority weight.
+                It does not buy a specific queue position or posting date, turn the bot into a commission,
+                or give me creative control over it.
               </label>
             </div>
           </div>
@@ -657,8 +690,8 @@
           ></div>
 
           <p class="scope-note">
-            Submitting a priority request does not guarantee that it will be accepted
-            or that the bot will be posted on a specific date.
+            This form does not charge you. The contribution is only counted after Anthem verifies it.
+            A larger amount may carry more priority weight, but no amount guarantees an exact position or posting date.
           </p>
         </form>
       </div>
