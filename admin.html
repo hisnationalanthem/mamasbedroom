@@ -527,6 +527,92 @@
       font-size: .78rem;
     }
 
+
+    .dashboard-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 0 0 20px;
+    }
+
+    .dashboard-tab {
+      min-height: 42px;
+      padding: 0 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.22);
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .dashboard-tab.is-active {
+      background: var(--wine);
+      border-color: var(--wine);
+      color: var(--cream);
+    }
+
+    .priority-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .priority-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .priority-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.26);
+      box-shadow: 0 8px 28px rgba(49,32,24,.06);
+    }
+
+    .priority-card summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .priority-card summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .priority-summary {
+      display: grid;
+      grid-template-columns: minmax(0,1.4fr) minmax(180px,.8fr) auto;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .priority-title strong {
+      display: block;
+      font: 500 1.35rem var(--display);
+    }
+
+    .priority-title small,
+    .priority-meta {
+      color: #6d5c52;
+      font-size: .82rem;
+    }
+
+    .priority-body {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .priority-stats,
+      .priority-summary {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 900px) {
       .login-wrap,
       .stats,
@@ -610,11 +696,10 @@
   <section class="site-shell" data-dashboard-view hidden>
     <div class="dashboard-head">
       <div>
-        <span class="eyebrow">Commission tracker</span>
-        <h1>the queue.</h1>
+        <span class="eyebrow">Private tracker</span>
+        <h1>the back room.</h1>
         <p class="lead">
-          Review submissions, update commission status and payment details,
-          keep private notes, and close completed work.
+          Manage paid commissions and upcoming-bot priority requests from the same private dashboard.
         </p>
       </div>
 
@@ -629,63 +714,124 @@
       </div>
     </div>
 
-    <div class="stats">
-      <div class="stat-card">
-        <small>Total</small>
-        <strong data-stat-total>0</strong>
+    <div class="dashboard-tabs" role="tablist" aria-label="Admin dashboard sections">
+      <button class="dashboard-tab is-active" type="button" data-dashboard-tab="commissions">
+        Commissions
+      </button>
+      <button class="dashboard-tab" type="button" data-dashboard-tab="priority">
+        Priority Requests
+      </button>
+    </div>
+
+    <div data-dashboard-panel="commissions">
+      <div class="stats">
+        <div class="stat-card">
+          <small>Total</small>
+          <strong data-stat-total>0</strong>
+        </div>
+        <div class="stat-card">
+          <small>New</small>
+          <strong data-stat-new>0</strong>
+        </div>
+        <div class="stat-card">
+          <small>In progress</small>
+          <strong data-stat-progress>0</strong>
+        </div>
+        <div class="stat-card">
+          <small>Complete</small>
+          <strong data-stat-complete>0</strong>
+        </div>
       </div>
-      <div class="stat-card">
-        <small>New</small>
-        <strong data-stat-new>0</strong>
-      </div>
-      <div class="stat-card">
-        <small>In progress</small>
-        <strong data-stat-progress>0</strong>
-      </div>
-      <div class="stat-card">
-        <small>Complete</small>
-        <strong data-stat-complete>0</strong>
+
+      <div class="panel">
+        <div class="filters">
+          <input
+            type="search"
+            placeholder="Search request ID, client, contact, type…"
+            data-search
+          >
+
+          <select data-status-filter>
+            <option value="">All statuses</option>
+            <option>New</option>
+            <option>Needs Discussion</option>
+            <option>Approved — Awaiting Payment</option>
+            <option>Paid — Queued</option>
+            <option>In Progress</option>
+            <option>Waiting on Client</option>
+            <option>Complete</option>
+            <option>Declined</option>
+            <option>Cancelled</option>
+          </select>
+        </div>
+
+        <div class="loading" data-loading>
+          Loading commissions…
+        </div>
+
+        <div class="commission-list" data-commission-list hidden></div>
+
+        <div class="empty-state" data-empty hidden>
+          No commissions match this view.
+        </div>
       </div>
     </div>
 
-    <div class="panel">
-      <div class="filters">
-        <input
-          type="search"
-          placeholder="Search request ID, client, contact, type…"
-          data-search
-        >
-
-        <select data-status-filter>
-          <option value="">All statuses</option>
-          <option>New</option>
-          <option>Needs Discussion</option>
-          <option>Approved — Awaiting Payment</option>
-          <option>Paid — Queued</option>
-          <option>In Progress</option>
-          <option>Waiting on Client</option>
-          <option>Complete</option>
-          <option>Declined</option>
-          <option>Cancelled</option>
-        </select>
+    <div data-dashboard-panel="priority" hidden>
+      <div class="priority-stats">
+        <div class="stat-card">
+          <small>Total</small>
+          <strong data-priority-stat-total>0</strong>
+        </div>
+        <div class="stat-card">
+          <small>Pending</small>
+          <strong data-priority-stat-pending>0</strong>
+        </div>
+        <div class="stat-card">
+          <small>Accepted</small>
+          <strong data-priority-stat-accepted>0</strong>
+        </div>
+        <div class="stat-card">
+          <small>Applied</small>
+          <strong data-priority-stat-applied>0</strong>
+        </div>
       </div>
 
-      <div class="loading" data-loading>
-        Loading commissions…
+      <div class="panel">
+        <div class="filters">
+          <input
+            type="search"
+            placeholder="Search request ID, person, bot, reference…"
+            data-priority-search
+          >
+
+          <select data-priority-status-filter>
+            <option value="">All statuses</option>
+            <option>Pending</option>
+            <option>Accepted</option>
+            <option>Applied</option>
+            <option>Declined</option>
+            <option>Cancelled</option>
+          </select>
+        </div>
+
+        <div class="loading" data-priority-loading>
+          Loading priority requests…
+        </div>
+
+        <div class="priority-list" data-priority-list hidden></div>
+
+        <div class="empty-state" data-priority-empty hidden>
+          No priority requests match this view.
+        </div>
       </div>
-
-      <div class="commission-list" data-commission-list hidden></div>
-
-      <div class="empty-state" data-empty hidden>
-        No commissions match this view.
-      </div>
-
-      <div class="status-message" data-dashboard-status aria-live="polite"></div>
     </div>
+
+    <div class="status-message" data-dashboard-status aria-live="polite"></div>
   </section>
 
 </main>
 
-<script type="module" src="admin.js?v=3"></script>
+<script type="module" src="admin.js?v=4"></script>
 </body>
 </html>
